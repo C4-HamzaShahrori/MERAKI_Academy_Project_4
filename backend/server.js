@@ -8,6 +8,11 @@ app.use(cors());
 
 app.use(express.json());
 
+
+const usersRouter=require("../backend/routes/user")
+
+app.use("/users", usersRouter)
+
 const PORT = 5000;
 
 app.listen(PORT, () => {
