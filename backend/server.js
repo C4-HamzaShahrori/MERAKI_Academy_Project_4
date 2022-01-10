@@ -10,8 +10,10 @@ app.use(express.json());
 
 
 const usersRouter=require("../backend/routes/user")
+const doctorRouter=require("../backend/routes/doctor")
 
 app.use("/users", usersRouter)
+app.use("/doctor",doctorRouter)
 
 const PORT = 5000;
 
