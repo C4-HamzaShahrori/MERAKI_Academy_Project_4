@@ -6,5 +6,7 @@ const doctorRouter = express.Router();
 ///endpoint:/doctor
 
  doctorRouter.post("/",addDoctorToCategory)
+ 
+ doctorRouter.post("/:id/comments",)
 
 module.exports = doctorRouter;
