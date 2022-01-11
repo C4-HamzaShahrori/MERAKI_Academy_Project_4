@@ -14,7 +14,7 @@ const doctorRouter=require("../backend/routes/doctor")
 const rolesRouter=require("./routes/role")
 
 app.use("/users", usersRouter)
-app.use("/doctor",doctorRouter)
+app.use("/doctors",doctorRouter)
 app.use("/roles",rolesRouter)
 
 const PORT = 5000;

@@ -4,6 +4,7 @@ const doctorSchema = new mongoose.Schema({
     firstName:{type:String,required:true},
     lastName:{type:String,required:true},
     age:{type:Number},
+    specialized:{type:String,required:true},
     numberPhone:{type:String,required:true},
     address:{type:String,required:true},
     comment:[{type:mongoose.Schema.Types.ObjectId,ref:"Comment"}]
