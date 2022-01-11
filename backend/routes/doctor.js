@@ -1,11 +1,15 @@
 const express = require("express");
 const doctorRouter = express.Router();
 
- const {addDoctorToCategory}=require("../controllers/doctor")
+ const {getAllDoctors,addDoctorToCategory,getAllDoctorsBySpecialty}=require("../controllers/doctor")
 
 ///endpoint:/doctor
 
+
  doctorRouter.post("/",addDoctorToCategory)
+ doctorRouter.get("/",getAllDoctors)
+ doctorRouter.get("/search_1",getAllDoctorsBySpecialty)
+ 
  
  doctorRouter.post("/:id/comments",)
 
