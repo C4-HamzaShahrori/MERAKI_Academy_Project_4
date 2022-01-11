@@ -35,6 +35,9 @@ const usersModel=require("../database/models/user")
      })
  }
 
+
+
+ 
  module.exports={
     createNewUser
  }
