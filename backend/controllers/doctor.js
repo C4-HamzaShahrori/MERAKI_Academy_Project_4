@@ -1,9 +1,15 @@
 const doctorModel = require("../database/models/doctor");
 
-
-
 const addDoctorToCategory = (req, res) => {
-  const { firstName, lastName, age, numberPhone, address, comment ,specialized} = req.body;
+  const {
+    firstName,
+    lastName,
+    age,
+    numberPhone,
+    address,
+    comment,
+    specialized,
+  } = req.body;
   const newDoctor = new doctorModel({
     firstName,
     lastName,
@@ -11,7 +17,7 @@ const addDoctorToCategory = (req, res) => {
     numberPhone,
     address,
     comment,
-    specialized
+    specialized,
   });
   newDoctor
     .save()
@@ -29,42 +35,100 @@ const addDoctorToCategory = (req, res) => {
     });
 };
 
-
-const getAllDoctors = (req,res)=>{
-    doctorModel.find({}).then((result)=>{
-        if (!result[0]){
-            res.status(200).json(`No result`)
-        }else{res.status(200).json({
-            success:true,
-            message:`all doctor`,
-            result:result
-        })}
-    }).catch((err)=>{
-        res.sendStatus(500)
+const getAllDoctors = (req, res) => {
+  doctorModel
+    .find({})
+    .then((result) => {
+      if (!result[0]) {
+        res.status(200).json(`No result`);
+      } else {
+        res.status(200).json({
+          success: true,
+          message: `all doctor`,
+          result: result,
+        });
+      }
     })
-}
+    .catch((err) => {
+      res.sendStatus(500);
+    });
+};
 
-
- const getAllDoctorsBySpecialty=(req,res)=>{
-     const specialized=req.query.specialized
-    doctorModel.find({specialized:specialized}).then((result)=>{
-        if(!result[0]){
-            res.status(200).json(`No result`)
-        }else {res.status(200).json({
-            success:true,
-            message:`all doctor by specialized `,
-            result:result
-        })}
-
-    }).catch((err)=>{
-        res.sendStatus(500)
+const getAllDoctorsBySpecialty = (req, res) => {
+  const specialized = req.query.specialized;
+  doctorModel
+    .find({ specialized: specialized })
+    .then((result) => {
+      if (!result[0]) {
+        res.status(200).json(`No result`);
+      } else {
+        res.status(200).json({
+          success: true,
+          message: `all doctor by specialized `,
+          result: result,
+        });
+      }
     })
- }
+    .catch((err) => {
+      res.sendStatus(500);
+    });
+};
 
+const updateDoctorById = (req, res) => {
+  const doctorId = req.params.id;
+  doctorModel
+    .findByIdAndUpdate(doctorId, req.body, { new: true })
+    .then((result) => {
+      if (!result) {
+        return res.status(404).json({
+          success: false,
+          message: `The Article: ${doctorId} is not found`,
+        });
+      }
+      res.status(202).json({
+        success: true,
+        message: `Article updated`,
+        article: result,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+      });
+    });
+};
 
+const deleteDoctorById = (req, res) => {
+  const doctorId = req.params.id;
+  doctorModel
+    .findByIdAndDelete(doctorId)
+    .then((result) => {
+      if (!result) {
+        res
+          .status(404)
+          .json({
+            success: false,
+            message: `The doctor: ${doctorId} is not found`,
+          });
+      }
+      res.status(200).json({
+        success: true,
+        message: `Succeeded to delete doctor with id: ${doctorId}`,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+      });
+    });
+};
 
 module.exports = {
   addDoctorToCategory,
   getAllDoctors,
-  getAllDoctorsBySpecialty
+  getAllDoctorsBySpecialty,
+  updateDoctorById,
+  deleteDoctorById
 };
