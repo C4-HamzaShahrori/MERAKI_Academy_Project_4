@@ -8,7 +8,7 @@ const authentication =(req,res,next)=>{
         token =req.headers.authorization.split(" ")[1]
         jwt.verify(token,SECRET,(err,result)=>{
             if(!result){res.status(403).json({ success: false, message: `The token is invalid or expired` })}
-            else{console.log(result);
+            else{console.log(result.userId);
                 req.token = result
                 next()}
         })

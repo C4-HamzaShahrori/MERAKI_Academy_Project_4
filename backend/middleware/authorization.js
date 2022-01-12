@@ -8,7 +8,7 @@ const authorization = (string) => {
     if (typeof token !== "undefined") {
       token = req.headers.authorization.split(" ")[1];
       jwt.verify(token, SECRET, (err, result) => {
-          console.log(result);
+          // console.log(result);
         if (result.role.permissions
             .indexOf(string) >= 0) {
           next();
