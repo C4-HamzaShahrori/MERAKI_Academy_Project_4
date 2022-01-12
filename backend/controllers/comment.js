@@ -1,7 +1,6 @@
 const commentModel = require("../database/models/comment");
 
 const doctorModel = require("../database/models/doctor");
-const userModel = require("../database/models/user");
 
 const addCommentToDoctor = (req, res) => {
   const doctorId = req.params.id;
@@ -40,8 +39,7 @@ const addCommentToDoctor = (req, res) => {
 const updateCommentOnDoctor = (req, res) => {
   const userId = req.body.userId;
   const idComment = req.params.id;
-  
- 
+
   commentModel.findById(idComment).then((result) => {
     console.log(result.commenter);
 
@@ -71,7 +69,6 @@ const deleteCommentById = (req, res) => {
   const idComment = req.params.id;
   const userId = req.body.userId;
   commentModel.findById(idComment).then((result) => {
-  
     if (result.commenter == userId) {
       commentModel
         .findByIdAndDelete(idComment)

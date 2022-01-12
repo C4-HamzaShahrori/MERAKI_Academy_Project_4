@@ -1,12 +1,5 @@
 const express = require("express");
 
+const RecommendedDoctorRouter = express.Router();
 
-
-const RecommendedDoctorRouter=express.Router()
-
-
-
-
-
-
-module.exports=RecommendedDoctorRouter
+module.exports = RecommendedDoctorRouter;
