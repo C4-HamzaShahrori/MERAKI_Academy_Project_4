@@ -25,6 +25,7 @@ const login = (req, res) => {
           (err, resultCompare) => {
             if (resultCompare == true) {
             return  res.status(200).json({
+              userId:result.id,
                 success: true,
                 message: `Valid login credentials`,
                 token: generateToken(),
