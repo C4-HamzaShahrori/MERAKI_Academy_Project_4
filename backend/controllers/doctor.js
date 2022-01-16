@@ -39,7 +39,7 @@ const addDoctorToCategory = (req, res) => {
 
 const getAllDoctors = (req, res) => {
   doctorModel
-    .find({})
+    .find({}).populate("comment")
     .then((result) => {
       if (!result[0]) {
         res.status(200).json(`No result`);
