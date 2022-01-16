@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Routes, Route, Link, Navigate } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 const SignUp = () => {
+  const Navigate=useNavigate()
   const [firstName,setFirstName]=useState("")
   const [lastName,setLastName]=useState("")
   const [age,setAge]=useState(0)
@@ -23,6 +24,7 @@ const SignUp = () => {
 
     }).then((result)=>{
       setOnSaveUser(result.data.message)
+      Navigate("/signIn")
     }).catch((err)=>{
       setOnSaveUser(err.response.data.message)
     })

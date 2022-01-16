@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Routes, Route, Link,  useNavigate } from "react-router-dom";
+
+
 
 const SignIn = ({setToken,setIsLogged,token}) => {
+    const navigate=useNavigate()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [messageAfterLogIN,setMessageAfterLogIN]=useState("")
@@ -15,6 +19,7 @@ const loginUser=()=>{
         setIsLogged(true)
         console.log(result.data);
         setMessageAfterLogIN(result.data.message)
+        navigate("/AllDoctor")
     }).catch((err)=>{
         console.log(err.response.status)
         if(err.response.status==403){
