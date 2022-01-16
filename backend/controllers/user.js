@@ -38,6 +38,39 @@ const createNewUser = (req, res) => {
     });
 };
 
+
+// const getUserById = (req, res) => {
+  
+// const userId = req.params.id;
+//   console.log(userId);
+//   usersModel.
+//   findOne({_id: userId})
+   
+ 
+//     .then((result) => {
+//       if (!result) {
+//         console.log("no");
+//         return res.status(404).json({
+//           success: false,
+//           message: `The user not found`,
+//         });
+//       }
+//       res.status(200).json({
+//         success: true,
+//         message: `The user ${id} `,
+//         user: result,
+//       });
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(500).json({
+//         success: false,
+//         message: `Server Error`,
+//       });
+//     });
+// };
+
 module.exports = {
   createNewUser,
+  // getUserById
 };

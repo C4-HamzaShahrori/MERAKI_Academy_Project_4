@@ -1,10 +1,11 @@
 const express = require("express");
 const usersRouter = express.Router();
 
-const { createNewUser } = require("../controllers/user");
+const { createNewUser ,getUserById} = require("../controllers/user");
 
-//endpoint :/user
+//endpoint :/users
 
 usersRouter.post("/", createNewUser);
+// usersRouter.get("/:id",getUserById)
 
 module.exports = usersRouter;
