@@ -24,13 +24,13 @@ const login = (req, res) => {
           result.password,
           (err, resultCompare) => {
             if (resultCompare == true) {
-              res.status(200).json({
+            return  res.status(200).json({
                 success: true,
                 message: `Valid login credentials`,
                 token: generateToken(),
               });
             } else if (resultCompare == false) {
-              res.status(403).json({
+             return res.status(403).json({
                 success: false,
                 message: `The password you have entered is incorrect`,
               });
@@ -38,7 +38,7 @@ const login = (req, res) => {
           }
         );
       } else if (!result)
-        res
+     return   res
           .status(404)
           .json({ success: false, message: `The email dosen't exist` });
     })
