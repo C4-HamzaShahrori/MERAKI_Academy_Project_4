@@ -114,3 +114,33 @@ transition-property:  box-shadow,transform;
 #imageDoctor{
 width: 200px;
 }
+
+
+.NavigationBar{
+
+  background-color: royalblue;
+
+}
+
+a{
+  color: white;
+  padding: 12px;
+  display: inline-block;
+  text-decoration: none;
+
+}
+
+#Home{
+  background-color: blue ;
+ 
+}
+a:hover,a:focus{
+  background-color: dimgray;
+}
+
+#SignIn{
+float: right;
+}
+#SignUp{
+float: right;
+}
