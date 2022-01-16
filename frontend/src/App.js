@@ -19,7 +19,7 @@ const [isLogged,setIsLogged]=useState(false)
         <Route path="/" element={<Home />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/signIn" element={<SignIn setToken={setToken} setIsLogged={setIsLogged} token={token}/>} />
-        <Route path="/Skip" element={<Skip />} />
+        <Route path="/AllDoctor" element={<Skip isLogged={isLogged}/>} />
       </Routes>
     </>
   );

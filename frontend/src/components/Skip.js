@@ -5,7 +5,7 @@ import { Routes, Route, Link, Navigate } from "react-router-dom";
 
 
 
-const Skip=()=>{
+const Skip=({isLogged})=>{
 const[allDoctor,setAllDoctor]=useState("")
 const[noResult,setNoResult]=useState("")
 useEffect(()=>{
@@ -28,8 +28,26 @@ const getAllDoctors=()=>{
 }
 
 return(<>
-    <div className="skipAllDoctors">
-       <div>{allDoctor ?(allDoctor.map((element,index)=>(<div key={index}><p>
+{isLogged?(  <div className="skipAllDoctors">
+       <div>{allDoctor ?(allDoctor.map((element,index)=>(<div key={index}>
+        <img id="imageDoctor" src={element.image}></img><p>
+           specialized:{element.specialized}
+        <br/>
+           FirstName:{element.firstName}
+           <br/>
+           LastName:{element.lastName}
+           <br/>
+           Address:{element.address}
+           <br/>
+           NumberPhone:{element.numberPhone}
+           <br/>
+         comment:{element.comment}
+       </p>
+     </div>))):(<div>{noResult}</div>)}</div> 
+    </div>):(  <div className="skipAllDoctors">
+       <div>{allDoctor ?(allDoctor.map((element,index)=>(<div key={index}>
+           <img id="imageDoctor" src={element.image}></img>
+           <p>
            specialized:{element.specialized}
         <br/>
            FirstName:{element.firstName}
@@ -42,7 +60,8 @@ return(<>
            <br/>
        </p>
      </div>))):(<div>{noResult}</div>)}</div> 
-    </div>
+    </div>)}
+  
 </>
 )
 

@@ -109,3 +109,8 @@ transition-property:  box-shadow,transform;
   transform: scale(1.1);
 
 }
+
+
+#imageDoctor{
+width: 200px;
+}

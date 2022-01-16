@@ -9,7 +9,7 @@ return(<div className="home" >
 <p id="definition">The right path to the right doctor  </p>
 <Link to="/signUp"><button id="signUp" >Sign up</button></Link>
 <Link to="/signIn"><button id="signIn" >Sign in</button></Link>
-<Link to="/Skip"><button id="Skip" >Skip</button></Link>
+<Link to="/AllDoctor"><button id="Skip" >Skip</button></Link>
 </div>
 </div>)
 
