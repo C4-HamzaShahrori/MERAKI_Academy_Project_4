@@ -2,6 +2,7 @@ const doctorModel = require("../database/models/doctor");
 
 const addDoctorToCategory = (req, res) => {
   const {
+    image,
     firstName,
     lastName,
     age,
@@ -11,6 +12,7 @@ const addDoctorToCategory = (req, res) => {
     specialized,
   } = req.body;
   const newDoctor = new doctorModel({
+    image,
     firstName,
     lastName,
     age,
