@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Routes, Route, Link, Navigate } from "react-router-dom";
 // import { all } from "../../../backend/routes/recommendedDr";
+import "./Skip.css";
 
 const Skip = ({ isLogged, token }) => {
   const [allDoctor, setAllDoctor] = useState("");
   const [noResult, setNoResult] = useState("");
   const [comment, setComment] = useState("");
-localStorage.getItem("Token")
+  localStorage.getItem("Token");
+  // console.log(token);
   const getAllDoctors = async () => {
     try {
       const result = await axios.get(`http://localhost:5000/doctors`, {
@@ -19,7 +21,7 @@ localStorage.getItem("Token")
       if (result.data == `No result`) {
         setNoResult(result.data);
       } else {
-        console.log(result.data.result);
+        // console.log(result.data.result);
         setAllDoctor(result.data.result);
       }
     } catch {}
@@ -27,7 +29,7 @@ localStorage.getItem("Token")
 
   const addComment = async (id) => {
     try {
-      axios.post(
+      await axios.post(
         `http://localhost:5000/comment/${id}`,
         { comment },
         {
@@ -36,6 +38,7 @@ localStorage.getItem("Token")
           },
         }
       );
+      setComment("")
       getAllDoctors();
     } catch (error) {
       console.log(error.response);
@@ -52,7 +55,7 @@ localStorage.getItem("Token")
           <div>
             {allDoctor ? (
               allDoctor.map((element, index) => (
-                <div key={index}>
+                <div key={index} className="doctor">
                   <div>
                     {" "}
                     <img id="imageDoctor" src={element.image}></img>
@@ -111,57 +114,56 @@ localStorage.getItem("Token")
             )}
           </div>
         </div>
-      ) : (<>
-       
-     <br></br>
-        <div className="skipAllDoctors">
-        
+      ) : (
+        <>
+          <br></br>
+          <div className="skipAllDoctors">
             {/* <div className="NavSkip" ><button id="Home">Home</button>
             <button id="SignIn">SignIn</button>
             <button id="SignUp">SignUp</button></div> */}
-          <div>
-            {allDoctor ? (
-              allDoctor.map((element, index) => (
-                <div key={index}>
-                  <div>
-                    {" "}
-                    <img id="imageDoctor" src={element.image}></img>
+            <div>
+              {allDoctor ? (
+                allDoctor.map((element, index) => (
+                  <div key={index} className="doctor">
+                    <div>
+                      {" "}
+                      <img id="imageDoctor" src={element.image}></img>
+                    </div>
+                    <div>
+                      {" "}
+                      <p>
+                        specialized:{element.specialized}
+                        <br />
+                        FirstName:{element.firstName}
+                        <br />
+                        LastName:{element.lastName}
+                        <br />
+                        Address:{element.address}
+                        <br />
+                        NumberPhone:{element.numberPhone}
+                        <br />
+                      </p>
+                    </div>
+                    <div>
+                      {element.comment ? (
+                        element.comment.map((comment, index) => {
+                          return (
+                            <p className="comment" key={index}>
+                              {comment.comment}
+                            </p>
+                          );
+                        })
+                      ) : (
+                        <></>
+                      )}
+                    </div>
                   </div>
-                  <div>
-                    {" "}
-                    <p>
-                      specialized:{element.specialized}
-                      <br />
-                      FirstName:{element.firstName}
-                      <br />
-                      LastName:{element.lastName}
-                      <br />
-                      Address:{element.address}
-                      <br />
-                      NumberPhone:{element.numberPhone}
-                      <br />
-                    </p>
-                  </div>
-                  <div>
-                    {element.comment ? (
-                      element.comment.map((comment, index) => {
-                        return (
-                          <p className="comment" key={index}>
-                            {comment.comment}
-                          </p>
-                        );
-                      })
-                    ) : (
-                      <></>
-                    )}
-                  </div>
-                </div>
-              ))
-            ) : (
-              <div>{noResult}</div>
-            )}
+                ))
+              ) : (
+                <div>{noResult}</div>
+              )}
+            </div>
           </div>
-        </div>
         </>
       )}
     </>
