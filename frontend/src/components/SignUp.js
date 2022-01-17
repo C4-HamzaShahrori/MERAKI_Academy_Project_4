@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Model  from "react-modal";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
+Model.setAppElement('#root')
 const SignUp = () => {
-  const Navigate=useNavigate()
+  const navigate=useNavigate()
   const [firstName,setFirstName]=useState("")
   const [lastName,setLastName]=useState("")
   const [age,setAge]=useState(0)
@@ -10,7 +12,7 @@ const SignUp = () => {
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
   const [onSaveUser,setOnSaveUser]=useState("")
-
+  const [modelIsOpen,setModelIsOpen]=useState(true)
   const saveUser=()=>{
     axios.post("http://localhost:5000/users",{
       firstName:firstName,
@@ -24,13 +26,15 @@ const SignUp = () => {
 
     }).then((result)=>{
       setOnSaveUser(result.data.message)
-      Navigate("/signIn")
+      navigate("/signIn")
     }).catch((err)=>{
       setOnSaveUser(err.response.data.message)
     })
   }
   return (
     <div>
+      <Model isOpen={modelIsOpen}  onRequestClose={()=>{setModelIsOpen(false)
+   navigate("/")}}>
       <h1 id="headerSinUp">SignUp:</h1>
       <input  onChange={(e)=>{
         setFirstName(e.target.value)
@@ -57,6 +61,7 @@ const SignUp = () => {
       <br />
       <button  onClick={saveUser} id="signIn">SinUp</button>
       <div>{onSaveUser}</div>
+      </Model>
     </div>
   );
 };
