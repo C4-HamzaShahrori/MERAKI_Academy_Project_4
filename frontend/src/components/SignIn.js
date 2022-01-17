@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
-
+import  Model  from "react-modal";
+Model.setAppElement('#root')
 const SignIn = ({
   setToken,
   setIsLogged,
@@ -10,11 +11,13 @@ const SignIn = ({
   setUserLastName,
   setUserFirstName,
   userId,
+  setRole
 }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [messageAfterLogIN, setMessageAfterLogIN] = useState("");
+  const [modelIsOpen,setModelIsOpen]=useState(true)
   // const [tokenInLocalStorage, setTokenInLocalStorage] = useState("");
   localStorage.setItem("Token", token);
   const loginUser = () => {
@@ -24,10 +27,16 @@ const SignIn = ({
         password: password,
       })
       .then( (result) => {
+        setRole(result.data.role)
         setToken(result.data.token);
         setIsLogged(true);
         console.log(result.data.userId);
         setUserId(result.data.userId);
+       
+        // console.log(result.data.role);
+        // console.log(result.data);
+        // const role =result.data.role.role
+        
         setMessageAfterLogIN(result.data.message);
         navigate("/AllDoctor");
       })
@@ -43,6 +52,8 @@ const SignIn = ({
   
   return (
     <div>
+  <Model isOpen={modelIsOpen}  onRequestClose={()=>{setModelIsOpen(false)
+   navigate("/")}}>
       <input
         onChange={(e) => {
           setEmail(e.target.value);
@@ -63,6 +74,7 @@ const SignIn = ({
         SignIn
       </button>
       <div>{messageAfterLogIN}</div>
+      </Model>
     </div>
   );
 };
