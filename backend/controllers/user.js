@@ -10,7 +10,7 @@ const createNewUser = (req, res) => {
     email,
     password,
     role,
-  });
+  })
   newUser
     .save()
     .then((result) => {
@@ -44,7 +44,7 @@ const getUserById = (req, res) => {
 const userId = req.params.id;
   console.log(userId);
   usersModel.
-  findOne({_id: userId})
+  findOne({_id: userId}).populate("role","role permissions -_id")
    
  
     .then((result) => {
