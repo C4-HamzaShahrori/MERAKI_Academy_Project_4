@@ -6,6 +6,6 @@ const { createNewUser ,getUserById} = require("../controllers/user");
 //endpoint :/users
 
 usersRouter.post("/", createNewUser);
-// usersRouter.get("/:id",getUserById)
+ usersRouter.get("/:id",getUserById)
 
 module.exports = usersRouter;
