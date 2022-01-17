@@ -12,6 +12,9 @@ const Navigation = ({
   userFirstName,
   setUserLastName,
   setUserFirstName,
+  setSearchDoctor,
+  role,
+  setModelNewDoctor
 }) => {
   const navigate = useNavigate();
 
@@ -28,13 +31,13 @@ const Navigation = ({
 
   useEffect(() => {
     getUserById();
-  }, [userId]);
+  }, [isLogged]);
 
   const logout = () => {
     setIsLogged(false);
     localStorage.clear();
     setToken("");
-    navigate("/signIn");
+    navigate("/");
   };
   return (
     <>
@@ -45,12 +48,16 @@ const Navigation = ({
             <a id="Home" href="/">
               Home
             </a>
+            <input id="searchInput" type="text" placeholder="Search..." onChange={(e)=>{setSearchDoctor(e.target.value)}}/>
             <a onClick={logout} id="SignIn">
               Logout
             </a>
             <a id="SignUp" href="#">
               {userFirstName} {userLastName}
             </a>
+            {role=="ADMIN"?( <a id="Home" onClick={()=>{setModelNewDoctor(true)}}>
+             Add Doctor
+            </a>):(<></>)}
           </>
         ) : (
           <>
@@ -58,6 +65,8 @@ const Navigation = ({
             <a id="Home" href="/">
               Home
             </a>
+            <input id="searchInput" type="text" placeholder="Search..." onChange={(e)=>{setSearchDoctor(e.target.value)}}/>
+            <i className="search icon "></i>
             <a id="SignIn" href="/signIn">
               SignIn
             </a>
