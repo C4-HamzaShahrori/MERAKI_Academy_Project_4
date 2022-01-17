@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const login = (req, res) => {
   userModel
     .findOne({ email: req.body.email.toLowerCase() })
-    .populate("role", "-_id -__v")
+    .populate("role", " -_id -__v")
     .then((result) => {
       const SECRET = process.env.SECRET;
       const generateToken = () => {
@@ -26,6 +26,7 @@ const login = (req, res) => {
             if (resultCompare == true) {
             return  res.status(200).json({
               userId:result.id,
+              role: result.role.role,
                 success: true,
                 message: `Valid login credentials`,
                 token: generateToken(),
