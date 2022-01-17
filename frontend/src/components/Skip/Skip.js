@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Model from "react-modal";
 import { Routes, Route, Link, Navigate } from "react-router-dom";
 // import { all } from "../../../backend/routes/recommendedDr";
 import "./Skip.css";
 
-const Skip = ({ isLogged, token }) => {
+const Skip = ({ isLogged, token ,searchDoctor,role}) => {
   const [allDoctor, setAllDoctor] = useState("");
   const [noResult, setNoResult] = useState("");
   const [comment, setComment] = useState("");
@@ -38,12 +39,24 @@ const Skip = ({ isLogged, token }) => {
           },
         }
       );
-      setComment("")
+     
       getAllDoctors();
     } catch (error) {
       console.log(error.response);
     }
   };
+
+
+
+const deleteDoctor=async(id)=>{
+  try{
+    await axios.delete(`http://localhost:5000/doctors/${id}`)
+    getAllDoctors()
+  }
+  catch{}
+}
+
+
 
   useEffect(() => {
     getAllDoctors();
@@ -52,10 +65,17 @@ const Skip = ({ isLogged, token }) => {
     <>
       {token ? (
         <div className="skipAllDoctors">
+        
           <div>
             {allDoctor ? (
-              allDoctor.map((element, index) => (
+              allDoctor.filter((doctorInformation)=>{
+                if(searchDoctor==""){
+                  return doctorInformation
+                }else if(doctorInformation.firstName.toLowerCase().includes(searchDoctor.toLowerCase())||doctorInformation.lastName.toLowerCase().includes(searchDoctor.toLowerCase())||doctorInformation.specialized.toLowerCase().includes(searchDoctor.toLowerCase())){return doctorInformation}
+              }).map((element, index) => (
                 <div key={index} className="doctor">
+                  
+               {role=="ADMIN"?(<button id="deleteButton" onClick={()=>{deleteDoctor(element._id)}}>X</button>):(<></>)} 
                   <div>
                     {" "}
                     <img id="imageDoctor" src={element.image}></img>
@@ -87,6 +107,7 @@ const Skip = ({ isLogged, token }) => {
                     ) : (
                       <></>
                     )}
+                   
                   </div>
                   {
                     <div>
@@ -107,6 +128,7 @@ const Skip = ({ isLogged, token }) => {
                       </button>
                     </div>
                   }
+               
                 </div>
               ))
             ) : (
@@ -123,7 +145,11 @@ const Skip = ({ isLogged, token }) => {
             <button id="SignUp">SignUp</button></div> */}
             <div>
               {allDoctor ? (
-                allDoctor.map((element, index) => (
+                allDoctor.filter((doctorInformation)=>{
+                  if(searchDoctor==""){
+                    return doctorInformation
+                  }else if(doctorInformation.firstName.toLowerCase().includes(searchDoctor.toLowerCase())||doctorInformation.lastName.toLowerCase().includes(searchDoctor.toLowerCase())||doctorInformation.specialized.toLowerCase().includes(searchDoctor.toLowerCase())){return doctorInformation}
+                }).map((element, index) => (
                   <div key={index} className="doctor">
                     <div>
                       {" "}
