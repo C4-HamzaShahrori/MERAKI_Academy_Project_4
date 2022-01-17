@@ -134,6 +134,9 @@ a{
   background-color: blue ;
  
 }
+#Home:hover{
+  cursor: pointer;
+}
 a:hover,a:focus{
   background-color: dimgray;
 }
@@ -143,4 +146,26 @@ float: right;
 }
 #SignUp{
 float: right;
+}
+
+#searchInput{
+ 
+  display:inline-flex;
+  font: caption;
+  /* justify-content: center;
+  align-items: center; */
+  border: blue;
+ font-size: 20px;
+ padding-left: 10px;
+  
+
+  
+ 
+}
+
+
+#deleteButton{
+  float: right;
+  background-color: red;
+  color: white;
 }
