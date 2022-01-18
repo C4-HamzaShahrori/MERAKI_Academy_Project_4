@@ -7,6 +7,7 @@ const {
   getAllDoctorsBySpecialty,
   updateDoctorById,
   deleteDoctorById,
+  getDoctorById
 } = require("../controllers/doctor");
 
 const { authentication } = require("../middleware/authentication");
@@ -17,7 +18,7 @@ const { addCommentToDoctor } = require("../controllers/comment");
 doctorRouter.post("/", addDoctorToCategory);
 doctorRouter.get("/", getAllDoctors);
 doctorRouter.get("/search_1", getAllDoctorsBySpecialty);
-
+doctorRouter.get("/:id",getDoctorById)
 doctorRouter.post(
   "/:id/comments",
   authentication,

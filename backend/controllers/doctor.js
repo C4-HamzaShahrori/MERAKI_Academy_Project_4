@@ -39,7 +39,8 @@ const addDoctorToCategory = (req, res) => {
 
 const getAllDoctors = (req, res) => {
   doctorModel
-    .find({}).populate("comment")
+    .find({})
+    .populate("comment")
     .then((result) => {
       if (!result[0]) {
         res.status(200).json(`No result`);
@@ -67,6 +68,26 @@ const getAllDoctorsBySpecialty = (req, res) => {
         res.status(200).json({
           success: true,
           message: `all doctor by specialized `,
+          result: result,
+        });
+      }
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+    });
+};
+
+const getDoctorById = (req, res) => {
+  const doctorId = req.params.id;
+  doctorModel
+    .findById(doctorId).populate("comment")
+    .then((result) => {
+      if (!result) {
+        res.status(200).json(`No result`);
+      } else {
+        res.status(200).json({
+          success: true,
+          message: `doctor by id =>${doctorId} `,
           result: result,
         });
       }
@@ -107,12 +128,10 @@ const deleteDoctorById = (req, res) => {
     .findByIdAndDelete(doctorId)
     .then((result) => {
       if (!result) {
-        res
-          .status(404)
-          .json({
-            success: false,
-            message: `The doctor: ${doctorId} is not found`,
-          });
+        res.status(404).json({
+          success: false,
+          message: `The doctor: ${doctorId} is not found`,
+        });
       }
       res.status(200).json({
         success: true,
@@ -132,5 +151,6 @@ module.exports = {
   getAllDoctors,
   getAllDoctorsBySpecialty,
   updateDoctorById,
-  deleteDoctorById
+  deleteDoctorById,
+  getDoctorById
 };
