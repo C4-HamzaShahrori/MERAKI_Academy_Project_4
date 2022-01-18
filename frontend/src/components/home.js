@@ -2,7 +2,7 @@ import React,{useState} from "react"
 import axios from "axios"
 import { Routes, Route, Link, Navigate } from "react-router-dom";
 
-
+// console.log(localStorage.getItem("Token"));
 const Home =()=>{
 return(<div className="home" >
 <div className="divDefinition" >

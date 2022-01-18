@@ -17,10 +17,12 @@ function App() {
   const [searchDoctor,setSearchDoctor]=useState('')
   const [role,setRole]=useState("")
   const [modelNewDoctor,setModelNewDoctor]=useState(false)
-
+  
+  // console.log(localStorage.getItem("Token"));
   return (
     <>
       <Navigation
+      token={token}
         isLogged={isLogged}
         userId={userId}
         setToken={setToken}

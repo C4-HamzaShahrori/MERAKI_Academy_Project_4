@@ -20,34 +20,60 @@ const SignIn = ({
   const [modelIsOpen,setModelIsOpen]=useState(true)
   // const [tokenInLocalStorage, setTokenInLocalStorage] = useState("");
   localStorage.setItem("Token", token);
-  const loginUser = () => {
-    axios
+  const loginUser = async() => {
+    try{
+      const result = await  axios
       .post("http://localhost:5000/login", {
         email: email,
         password: password,
       })
-      .then( (result) => {
-        setRole(result.data.role)
-        setToken(result.data.token);
-        setIsLogged(true);
-        console.log(result.data.userId);
-        setUserId(result.data.userId);
+      setRole(result.data.role)
+      setToken(result.data.token);
+      setIsLogged(true);
+      // console.log(result.data.userId);
+      setUserId(result.data.userId);
+      localStorage.setItem("UserId", result.data.userId)
+     
+      // console.log(result.data.role);
+      // console.log(result.data);
+      // const role =result.data.role.role
+      
+      setMessageAfterLogIN(result.data.message);
+      navigate("/AllDoctor"); 
+    }
+    catch(error){ console.log(error.response.status);
+      if (error.response.status == 403) {
+        setMessageAfterLogIN(error.response.data.message);
+      } else {
+        setMessageAfterLogIN(error.response.data.message);
+      }}
+    // axios
+    //   .post("http://localhost:5000/login", {
+    //     email: email,
+    //     password: password,
+    //   })
+    //   .then( (result) => {
+    //     setRole(result.data.role)
+    //     setToken(result.data.token);
+    //     setIsLogged(true);
+    //     // console.log(result.data.userId);
+    //     setUserId(result.data.userId);
        
-        // console.log(result.data.role);
-        // console.log(result.data);
-        // const role =result.data.role.role
+    //     // console.log(result.data.role);
+    //     // console.log(result.data);
+    //     // const role =result.data.role.role
         
-        setMessageAfterLogIN(result.data.message);
-        navigate("/AllDoctor");
-      })
-      .catch((err) => {
-        console.log(err.response.status);
-        if (err.response.status == 403) {
-          setMessageAfterLogIN(err.response.data.message);
-        } else {
-          setMessageAfterLogIN(err.response.data.message);
-        }
-      });
+    //     setMessageAfterLogIN(result.data.message);
+    //     navigate("/AllDoctor");
+    //   })
+    //   .catch((err) => {
+    //     console.log(err.response.status);
+    //     if (err.response.status == 403) {
+    //       setMessageAfterLogIN(err.response.data.message);
+    //     } else {
+    //       setMessageAfterLogIN(err.response.data.message);
+    //     }
+    //   });
   };
   
   return (
