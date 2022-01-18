@@ -14,24 +14,39 @@ const Navigation = ({
   setUserFirstName,
   setSearchDoctor,
   role,
-  setModelNewDoctor
+  setModelNewDoctor,
+  token
 }) => {
+  
+  
+  // console.log(userId);
   const navigate = useNavigate();
-
+  
   const getUserById = async () => {
     try {
       const result = await axios.get(`http://localhost:5000/users/${userId}`);
       // console.log(result.data.user.firstName);
+    
       setUserFirstName(result.data.user.firstName);
       setUserLastName(result.data.user.lastName);
+      
+      localStorage.setItem("FirstName", result.data.user.firstName)
+      localStorage.setItem("LastName", result.data.user.lastName)
+    
     } catch (error) {
       console.log(error.response);
     }
   };
 
   useEffect(() => {
-    getUserById();
-  }, [isLogged]);
+   if( userId){getUserById()} 
+  }, [userId]);
+
+
+
+  
+
+
 
   const logout = () => {
     setIsLogged(false);
@@ -42,7 +57,7 @@ const Navigation = ({
   return (
     <>
       <div className="NavigationBar">
-        {isLogged ? (
+        {localStorage.getItem("Token")? (
           <>
             {" "}
             <a id="Home" href="/">
@@ -53,7 +68,7 @@ const Navigation = ({
               Logout
             </a>
             <a id="SignUp" href="#">
-              {userFirstName} {userLastName}
+              {userFirstName ||localStorage.getItem("FirstName")} {localStorage.getItem("LastName")||userLastName}
             </a>
             {role=="ADMIN"?( <a id="Home" onClick={()=>{setModelNewDoctor(true)}}>
              Add Doctor

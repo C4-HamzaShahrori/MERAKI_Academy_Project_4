@@ -9,7 +9,9 @@ const Skip = ({ isLogged, token ,searchDoctor,role}) => {
   const [allDoctor, setAllDoctor] = useState("");
   const [noResult, setNoResult] = useState("");
   const [comment, setComment] = useState("");
-  localStorage.getItem("Token");
+//  console.log(localStorage.getItem("Token")); 
+
+ localStorage.getItem("Token");
   // console.log(token);
   const getAllDoctors = async () => {
     try {
@@ -63,7 +65,7 @@ const deleteDoctor=async(id)=>{
   }, []);
   return (
     <>
-      {token ? (
+      {localStorage.getItem("Token") ? (
         <div className="skipAllDoctors">
         
           <div>
@@ -149,6 +151,7 @@ const deleteDoctor=async(id)=>{
                   if(searchDoctor==""){
                     return doctorInformation
                   }else if(doctorInformation.firstName.toLowerCase().includes(searchDoctor.toLowerCase())||doctorInformation.lastName.toLowerCase().includes(searchDoctor.toLowerCase())||doctorInformation.specialized.toLowerCase().includes(searchDoctor.toLowerCase())){return doctorInformation}
+                
                 }).map((element, index) => (
                   <div key={index} className="doctor">
                     <div>
