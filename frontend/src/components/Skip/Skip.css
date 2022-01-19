@@ -1,4 +1,5 @@
 .doctor{
     border: blue solid 2px;
-    margin: 10px;
+    margin: 10px ;
+    border-radius: 20px;
 }

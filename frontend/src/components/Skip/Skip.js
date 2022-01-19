@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Model from "react-modal";
-import { Routes, Route, Link, Navigate } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 // import { all } from "../../../backend/routes/recommendedDr";
 import "./Skip.css";
 
-const Skip = ({ isLogged, token ,searchDoctor,role}) => {
+const Skip = ({ isLogged, token, searchDoctor, role, setDoctorId }) => {
+  const navigate = useNavigate();
   const [allDoctor, setAllDoctor] = useState("");
   const [noResult, setNoResult] = useState("");
   const [comment, setComment] = useState("");
-//  console.log(localStorage.getItem("Token")); 
+  //  console.log(localStorage.getItem("Token"));
 
- localStorage.getItem("Token");
+  localStorage.getItem("Token");
   // console.log(token);
   const getAllDoctors = async () => {
     try {
@@ -41,167 +42,214 @@ const Skip = ({ isLogged, token ,searchDoctor,role}) => {
           },
         }
       );
-     
+
       getAllDoctors();
     } catch (error) {
       console.log(error.response);
     }
   };
 
+  const deleteDoctor = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/doctors/${id}`);
+      getAllDoctors();
+    } catch {}
+  };
 
+  const getDoctorById = async (id) => {
+    navigate(`/doctor/${id}`);
+    // try{
+    //   const result = await axios.get(`http://localhost:5000/doctors/${id}`)
+    //   console.log(result.data.result);
+    //   console.log(result.data.result[0]._id);
+    //   setDoctorId(result.data.result[0]._id)
+    //   navigate(`/doctor/${id}`)
 
-const deleteDoctor=async(id)=>{
-  try{
-    await axios.delete(`http://localhost:5000/doctors/${id}`)
-    getAllDoctors()
-  }
-  catch{}
-}
-
-const getDoctorById=async (id)=>{
-try{
-  const result = await axios.get(`http://localhost:5000/doctors/${id}`)
-}
-catch{}
-}
+    // }
+    // catch(error){console.log(error.response);}
+  };
 
   useEffect(() => {
     getAllDoctors();
   }, []);
   return (
     <>
-      {localStorage.getItem("Token") ? (
+      {
         <div className="skipAllDoctors">
-        
-          <div>
+          <div className="allDoctor">
             {allDoctor ? (
-              allDoctor.filter((doctorInformation)=>{
-                if(searchDoctor==""){
-                  return doctorInformation
-                }else if(doctorInformation.firstName.toLowerCase().includes(searchDoctor.toLowerCase())||doctorInformation.lastName.toLowerCase().includes(searchDoctor.toLowerCase())||doctorInformation.specialized.toLowerCase().includes(searchDoctor.toLowerCase())){return doctorInformation}
-              }).map((element, index) => (
-                <div key={index} className="doctor">
-                  
-               {role=="ADMIN"?(<button id="deleteButton" onClick={()=>{deleteDoctor(element._id)}}>X</button>):(<></>)} 
-                  <div>
-                    {" "}
-                    <img id="imageDoctor" src={element.image}></img>
-                  </div>
-                  <div>
-                    {" "}
-                    <p>
-                      specialized:{element.specialized}
-                      <br />
-                      FirstName:{element.firstName}
-                      <br />
-                      LastName:{element.lastName}
-                      <br />
-                      Address:{element.address}
-                      <br />
-                      NumberPhone:{element.numberPhone}
-                      <br />
-                    </p>
-                  </div>
-                  <div>
-                    {element.comment ? (
-                      element.comment.map((comment, index) => {
-                        return (
-                          <p className="comment" key={index}>
-                            {comment.comment}
-                          </p>
-                        );
-                      })
+              allDoctor
+                .filter((doctorInformation) => {
+                  if (searchDoctor == "") {
+                    return doctorInformation;
+                  } else if (
+                    doctorInformation.firstName
+                      .toLowerCase()
+                      .includes(searchDoctor.toLowerCase()) ||
+                    doctorInformation.lastName
+                      .toLowerCase()
+                      .includes(searchDoctor.toLowerCase()) ||
+                    doctorInformation.specialized
+                      .toLowerCase()
+                      .includes(searchDoctor.toLowerCase())
+                  ) {
+                    return doctorInformation;
+                  }
+                })
+                .map((element, index) => (
+                  <div key={index} className="doctor">
+                    {role == "ADMIN" ||
+                    localStorage.getItem("Role") == "ADMIN" ? (
+                      <button
+                        id="deleteButton"
+                        onClick={() => {
+                          deleteDoctor(element._id);
+                        }}
+                      >
+                        X
+                      </button>
                     ) : (
                       <></>
                     )}
-                   
-                  </div>
-                  {
-                    <div>
-                      <textarea
-                        className="comment"
-                        placeholder="comment..."
-                        onChange={(e) => {
-                          setComment(e.target.value);
-                        }}
-                      />
-                      <button
-                        className="commentButton"
+                    <div className="containerImage">
+                      {" "}
+                      <img id="imageDoctor" src={element.image}></img>
+                    </div>
+                    <div className="containerPrg">
+                      {" "}
+                      <p>{element.firstName} {element.lastName}</p>
+                      <p>specialized:{element.specialized}</p>
+                      <button id="butOpen"
                         onClick={() => {
-                          addComment(element._id);
+                          getDoctorById(element._id);
                         }}
                       >
-                        Add comment
+                        open
                       </button>
                     </div>
-                  }
-               
-                </div>
-              ))
+                  </div>
+                ))
             ) : (
               <div>{noResult}</div>
             )}
           </div>
         </div>
-      ) : (
-        <>
-          <br></br>
-          <div className="skipAllDoctors">
-            {/* <div className="NavSkip" ><button id="Home">Home</button>
-            <button id="SignIn">SignIn</button>
-            <button id="SignUp">SignUp</button></div> */}
-            <div>
-              {allDoctor ? (
-                allDoctor.filter((doctorInformation)=>{
-                  if(searchDoctor==""){
-                    return doctorInformation
-                  }else if(doctorInformation.firstName.toLowerCase().includes(searchDoctor.toLowerCase())||doctorInformation.lastName.toLowerCase().includes(searchDoctor.toLowerCase())||doctorInformation.specialized.toLowerCase().includes(searchDoctor.toLowerCase())){return doctorInformation}
-                
-                }).map((element, index) => (
-                  <div key={index} className="doctor">
-                    <div>
-                      {" "}
-                      <img id="imageDoctor" src={element.image}></img>
-                    </div>
-                    <div>
-                      {" "}
-                      <p>
-                        specialized:{element.specialized}
-                        <br />
-                        FirstName:{element.firstName}
-                        <br />
-                        LastName:{element.lastName}
-                        <br />
-                        Address:{element.address}
-                        <br />
-                        NumberPhone:{element.numberPhone}
-                        <br />
-                      </p>
-                    </div>
-                    <div>
-                      {element.comment ? (
-                        element.comment.map((comment, index) => {
-                          return (
-                            <p className="comment" key={index}>
-                              {comment.comment}
-                            </p>
-                          );
-                        })
-                      ) : (
-                        <></>
-                      )}
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <div>{noResult}</div>
-              )}
-            </div>
-          </div>
-        </>
-      )}
+      }
     </>
   );
 };
 
 export default Skip;
+
+// return (
+//   <>
+//     {localStorage.getItem("Token") ? (
+//       <div className="skipAllDoctors">
+//         <div>
+//           {allDoctor ? (
+//             allDoctor
+//               .filter((doctorInformation) => {
+//                 if (searchDoctor == "") {
+//                   return doctorInformation;
+//                 } else if (
+//                   doctorInformation.firstName
+//                     .toLowerCase()
+//                     .includes(searchDoctor.toLowerCase()) ||
+//                   doctorInformation.lastName
+//                     .toLowerCase()
+//                     .includes(searchDoctor.toLowerCase()) ||
+//                   doctorInformation.specialized
+//                     .toLowerCase()
+//                     .includes(searchDoctor.toLowerCase())
+//                 ) {
+//                   return doctorInformation;
+//                 }
+//               })
+//               .map((element, index) => (
+//                 <div key={index} className="doctor">
+//                   {role == "ADMIN" ? (
+//                     <button
+//                       id="deleteButton"
+//                       onClick={() => {
+//                         deleteDoctor(element._id);
+//                       }}
+//                     >
+//                       X
+//                     </button>
+//                   ) : (
+//                     <></>
+//                   )}
+//                   <div>
+//                     {" "}
+//                     <img id="imageDoctor" src={element.image}></img>
+//                   </div>
+//                   <div>
+//                     {" "}
+//                     <p>specialized:{element.specialized}</p>
+//                     <button
+//                       onClick={() => {
+//                         getDoctorById(element._id);
+//                       }}
+//                     >
+//                       open
+//                     </button>
+//                   </div>
+//                 </div>
+//               ))
+//           ) : (
+//             <div>{noResult}</div>
+//           )}
+//         </div>
+//       </div>
+//     ) : (
+//       <>
+//         <br></br>
+//         <div className="skipAllDoctors">
+//           <div>
+//             {allDoctor ? (
+//               allDoctor
+//                 .filter((doctorInformation) => {
+//                   if (searchDoctor == "") {
+//                     return doctorInformation;
+//                   } else if (
+//                     doctorInformation.firstName
+//                       .toLowerCase()
+//                       .includes(searchDoctor.toLowerCase()) ||
+//                     doctorInformation.lastName
+//                       .toLowerCase()
+//                       .includes(searchDoctor.toLowerCase()) ||
+//                     doctorInformation.specialized
+//                       .toLowerCase()
+//                       .includes(searchDoctor.toLowerCase())
+//                   ) {
+//                     return doctorInformation;
+//                   }
+//                 })
+//                 .map((element, index) => (
+//                   <div key={index} className="doctor">
+//                     <div>
+//                       {" "}
+//                       <img id="imageDoctor" src={element.image}></img>
+//                     </div>
+//                     <div>
+//                       {" "}
+//                       <p>specialized:{element.specialized}</p>
+//                       <button
+//                         onClick={() => {
+//                           getDoctorById(element._id);
+//                         }}
+//                       >
+//                         open
+//                       </button>
+//                     </div>
+//                   </div>
+//                 ))
+//             ) : (
+//               <div>{noResult}</div>
+//             )}
+//           </div>
+//         </div>
+//       </>
+//     )}
+//   </>
+// );

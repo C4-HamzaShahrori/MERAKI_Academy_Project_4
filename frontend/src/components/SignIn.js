@@ -19,7 +19,7 @@ const SignIn = ({
   const [messageAfterLogIN, setMessageAfterLogIN] = useState("");
   const [modelIsOpen,setModelIsOpen]=useState(true)
   // const [tokenInLocalStorage, setTokenInLocalStorage] = useState("");
-  localStorage.setItem("Token", token);
+
   const loginUser = async() => {
     try{
       const result = await  axios
@@ -28,11 +28,13 @@ const SignIn = ({
         password: password,
       })
       setRole(result.data.role)
+      localStorage.setItem("Role", result.data.role)
       setToken(result.data.token);
       setIsLogged(true);
       // console.log(result.data.userId);
       setUserId(result.data.userId);
       localStorage.setItem("UserId", result.data.userId)
+      localStorage.setItem("Token", result.data.token);
      
       // console.log(result.data.role);
       // console.log(result.data);
