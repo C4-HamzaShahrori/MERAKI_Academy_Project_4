@@ -88,7 +88,7 @@ const getDoctorById = (req, res) => {
         res.status(200).json({
           success: true,
           message: `doctor by id =>${doctorId} `,
-          result: result,
+          result: [result],
         });
       }
     })
