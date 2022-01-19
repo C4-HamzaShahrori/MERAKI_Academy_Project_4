@@ -8,6 +8,7 @@ import SignIn from "./components/SignIn";
 import Skip from "./components/Skip/Skip.js";
 import Navigation from "./components/Navigation";
 import NewDoctor from "./components/NewDoctor"
+import ShowDoctor from "./components/ShowDoctor"
 function App() {
   const [token, setToken] = useState("");
   const [isLogged, setIsLogged] = useState(false);
@@ -17,7 +18,8 @@ function App() {
   const [searchDoctor,setSearchDoctor]=useState('')
   const [role,setRole]=useState("")
   const [modelNewDoctor,setModelNewDoctor]=useState(false)
-  
+  const [doctorId,setDoctorId]=useState("")
+  const [doctorDetails, setDoctorDetails] = useState("");
   // console.log(localStorage.getItem("Token"));
   return (
     <>
@@ -59,12 +61,12 @@ function App() {
         />
         <Route
           path="/AllDoctor"
-          element={<Skip isLogged={isLogged} token={token} searchDoctor={searchDoctor} role={role}/>}
+          element={<Skip isLogged={isLogged} token={token} searchDoctor={searchDoctor} role={role}  setDoctorId={setDoctorId}setDoctorDetails={setDoctorDetails}doctorDetails={doctorDetails}/>}
         />
-           {/* <Route
-          path="/NewDoctor"
-          element={<NewDoctor isLogged={isLogged} token={token} searchDoctor={searchDoctor}/>}
-        /> */}
+           <Route
+          path="/doctor/:id"
+          element={<ShowDoctor isLogged={isLogged} token={token} searchDoctor={searchDoctor}doctorId={doctorId}token={token}/>}
+        />
       </Routes>
     </>
   );

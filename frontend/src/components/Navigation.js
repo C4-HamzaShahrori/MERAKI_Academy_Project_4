@@ -64,13 +64,13 @@ const Navigation = ({
               Home
             </a>
             <input id="searchInput" type="text" placeholder="Search..." onChange={(e)=>{setSearchDoctor(e.target.value)}}/>
-            <a onClick={logout} id="SignIn">
+            <a onClick={logout} id="logout">
               Logout
             </a>
             <a id="SignUp" href="#">
               {userFirstName ||localStorage.getItem("FirstName")} {localStorage.getItem("LastName")||userLastName}
             </a>
-            {role=="ADMIN"?( <a id="Home" onClick={()=>{setModelNewDoctor(true)}}>
+            {role=="ADMIN" ||localStorage.getItem("Role")=="ADMIN"?( <a id="Home" onClick={()=>{setModelNewDoctor(true)}}>
              Add Doctor
             </a>):(<></>)}
           </>
