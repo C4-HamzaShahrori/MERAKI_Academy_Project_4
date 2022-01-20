@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Model from "react-modal";
 import "./App.css";
+// import logo from '../image/logo.png'
 import { Routes, Route, Link, Navigate } from "react-router-dom";
 import Home from "./components/Home";
 import SignUp from "./components/SignUp";
@@ -23,7 +24,8 @@ function App() {
   // console.log(localStorage.getItem("Token"));
   return (
     <>
-      <Navigation
+    
+    <Navigation
       token={token}
         isLogged={isLogged}
         userId={userId}
@@ -37,6 +39,8 @@ function App() {
         role={role}
         setModelNewDoctor={setModelNewDoctor}
       />
+    
+     
       <div className="App">
         <h1>healthApp</h1>
       </div>

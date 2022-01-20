@@ -5,9 +5,9 @@ import axios from "axios";
 
 const ShowDoctor = ({ doctorId, token }) => {
      localStorage.getItem("Token")
-  console.log(doctorId);
+//   console.log(doctorId);
   const { id } = useParams();
-  console.log(id);
+//   console.log(id);
   const navigate = useNavigate();
   const [doctorDetails, setDoctorDetails] = useState("");
   const [comment, setComment] = useState("");
@@ -15,9 +15,9 @@ const ShowDoctor = ({ doctorId, token }) => {
   const getDoctorById = async () => {
     try {
       const result = await axios.get(`http://localhost:5000/doctors/${id}`);
-      console.log(result.data.result);
+    //   console.log(result.data.result);
       setDoctorDetails(result.data.result);
-      console.log(doctorDetails);
+    //   console.log(doctorDetails);
     } catch (error) {
       console.log(error);
     }
@@ -25,7 +25,7 @@ const ShowDoctor = ({ doctorId, token }) => {
   useEffect(() => {
     getDoctorById();
   }, []);
-console.log(doctorDetails);
+// console.log(doctorDetails);
   const addComment = async () => {
     try {
       await axios.post(

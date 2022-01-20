@@ -79,31 +79,36 @@ const SignIn = ({
   };
   
   return (
-    <div>
-  <Model isOpen={modelIsOpen}  onRequestClose={()=>{setModelIsOpen(false)
-   navigate("/")}}>
-      <input
+    <Model className="divLogin" isOpen={modelIsOpen}  onRequestClose={()=>{setModelIsOpen(false)
+      navigate("/")}}>
+    
+ 
+     <img id="imgLogin" src='../image/login.jpg'/>
+     <h2 id="headerLogin">تسجيل الدخول</h2>
+     <br/>
+      <input className="login E"
         onChange={(e) => {
           setEmail(e.target.value);
         }}
         type="email"
-        placeholder="Email"
+        placeholder="البريد الإلكتروني"
       />
       <br />
-      <input
+      <input className="login P"
         onChange={(e) => {
           setPassword(e.target.value);
         }}
         type="password"
-        placeholder="Password"
+        placeholder="كلمة المرور"
       />
       <br />
-      <button id="signUp" onClick={loginUser}>
-        SignIn
+      <button id="butLogin" onClick={loginUser}>
+      تسجيل الدخول
       </button>
       <div>{messageAfterLogIN}</div>
+    
       </Model>
-    </div>
+   
   );
 };
 

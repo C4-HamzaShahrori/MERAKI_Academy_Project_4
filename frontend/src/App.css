@@ -1,9 +1,218 @@
+
+ *{
+  margin: 0;
+  padding: 0;
+  font-family: "ٌRoboto",sans-serif;
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
   color: rgb(0, 68, 255);
   font-size:xx-large;
   font-family:Arial, Helvetica, sans-serif
 }
+
+.container{
+  height:100vh;
+  width: 100vw;
+ background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(./image/cover1.jpg);
+ background-position: center;
+ background-size: cover;
+ padding-left:8% ;
+ padding-right: 8%;
+ box-sizing: border-box;
+  
+}
+
+.NavigationBar{
+  height: 12%;
+  display: flex;
+  align-items: center;
+}
+
+#logo{
+width: 50px;
+cursor: pointer;
+}
+
+.nav{
+  flex: 1;
+  text-align: right;
+}
+
+.nav ul li{
+list-style: none;
+display: inline-block;
+margin-left: 60px;
+}
+
+
+.nav ul li a{
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+}
+
+.row{
+display: flex;
+height: 88%;
+align-items: center;
+}
+
+.col{
+  flex-basis:50% ;
+}
+
+.FindDoctor{
+  color: #fff;
+  font-size: 100px;
+}
+
+#logout{
+  cursor: pointer;
+}
+
+#searchInput{
+ 
+  display:inline-flex;
+  color: #fff;
+  font: caption;
+  /* justify-content: center;
+  align-items: center; */
+  /* border: blue; */
+ font-size: 20px;
+ padding-left: 10px;
+ justify-content: center;
+
+  
+ 
+}
+
+.card{
+  width: 200px;
+  height: 230px;
+  display: inline-block;
+  border-radius: 10px;
+  padding: 15px 25px;
+  box-sizing: border-box;
+  cursor: pointer;
+  margin: 10px 15px;
+  background-position: center;
+  background-size: cover;
+  transition:transform 0.5s;
+}
+
+
+.card1{
+  background-image: url(./image/tip1.jpg);
+}
+.card2{
+  background-image: url(./image/tip2.jpg);
+}
+.card3{
+  background-image: url(./image/tip4.jpg);
+}
+.card4{
+  background-image: url(./image/tip3.jpg);
+}
+
+.card:hover{
+  transform: translateY(-10px);
+}
+
+
+.tips{
+color: #fff;
+text-shadow: 0 0 5px #999;
+font-size: 20px;
+
+}
+
+.card p{
+  text-shadow: 0 0 15px blue;
+  font-size: 20px;
+  color: #c2ec08;
+  font-size: 27px;
+}
+
+.divLogin{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 350px;
+  height: 420px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius:15px ;
+  box-sizing: border-box;
+}
+
+#imgLogin{
+  position: relative;
+  top: -50px;
+  left: 118px;
+  width: 100px;
+  height: 100px;
+  border-radius: 15%;
+}
+
+#headerLogin{
+  color:#fff ;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.login{
+  position: relative;
+  outline: none;
+  border: none;
+  width: 250px;
+  height: 35px;
+  border-bottom: 2px solid #0094ff;
+  background: none;
+  padding: 5px;
+  color: #fff;
+  margin: 10px;
+}
+
+
+
+.login::placeholder{
+  color:#fff;
+  text-align: center;
+}
+.E{
+  
+  left: 50px;
+}
+
+
+.P{
+  
+  left: 50px;
+}
+
+#butLogin{
+  position: absolute;
+  top: 305px;
+  left: 75px;
+  width: 200px;
+  height: 35px;
+  border: none;
+  background: #0077ff;
+  outline: none;
+  color: #fff;
+  border-radius: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#butLogin:hover{
+background: #fff;
+color:#0077ff ;
+}
+
 
 .home{
   display: grid;
@@ -133,59 +342,50 @@ border-radius: 30%;
 
 }
 
-.NavigationBar{
 
-  background-color: royalblue;
 
-}
 
-a{
+
+
+/* 
+ a{
   color: white;
   padding: 12px;
   display: inline-block;
   text-decoration: none;
 
-}
+}  */
 
-#Home{
+/* #Home{
   background-color: blue ;
  
-}
-#Home:hover{
+} */
+/* #Home:hover{
   cursor: pointer;
-}
-a:hover,a:focus{
+} */
+/* a:hover,a:focus{
   background-color: dimgray;
-}
+} */
 
 
-#logout{
+/* #logout{
   float: right;
 }
 #logout:hover{
   cursor: pointer;
-}
-#SignIn{
+} */
+/* #SignIn{
 float: right;
 }
 #SignUp{
 float: right;
-}
+} */
 
-#searchInput{
- 
-  display:inline-flex;
-  font: caption;
-  /* justify-content: center;
-  align-items: center; */
-  border: blue;
- font-size: 20px;
- padding-left: 10px;
-  
+/* #nameUser{
+  float: right;
+} */
 
-  
- 
-}
+
 
 
 #deleteButton{
