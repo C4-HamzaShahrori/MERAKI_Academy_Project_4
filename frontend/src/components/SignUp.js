@@ -32,8 +32,8 @@ const SignUp = () => {
     })
   }
   return (
-    <div>
-      <Model isOpen={modelIsOpen}  onRequestClose={()=>{setModelIsOpen(false)
+  
+      <Model className="divSignUp" isOpen={modelIsOpen}  onRequestClose={()=>{setModelIsOpen(false)
    navigate("/")}}>
       <h1 id="headerSinUp">SignUp:</h1>
       <input  onChange={(e)=>{
@@ -62,7 +62,7 @@ const SignUp = () => {
       <button  onClick={saveUser} id="signIn">SinUp</button>
       <div>{onSaveUser}</div>
       </Model>
-    </div>
+   
   );
 };
 
