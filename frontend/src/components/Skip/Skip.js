@@ -76,6 +76,7 @@ const Skip = ({ isLogged, token, searchDoctor, role, setDoctorId }) => {
     <>
       {
         <div className="skipAllDoctors">
+          <h1 className="titleTheDoctors">الأطباء</h1>
           <div className="allDoctor">
             {allDoctor ? (
               allDoctor
@@ -97,6 +98,7 @@ const Skip = ({ isLogged, token, searchDoctor, role, setDoctorId }) => {
                   }
                 })
                 .map((element, index) => (
+
                   <div key={index} className="doctor">
                     {role == "ADMIN" ||
                     localStorage.getItem("Role") == "ADMIN" ? (
@@ -111,22 +113,26 @@ const Skip = ({ isLogged, token, searchDoctor, role, setDoctorId }) => {
                     ) : (
                       <></>
                     )}
-                    <div className="containerImage">
-                      {" "}
-                      <img id="imageDoctor" src={element.image}></img>
+                    <div className="profile">
+                   
+                      <img id="imageDoctor" src={element.image}
+                      ></img>
+<h2 id="nameDoctor"> {element.firstName} {element.lastName} </h2>
+<p id="specializedDr">{element.specialized}</p>
+
                     </div>
-                    <div className="containerPrg">
-                      {" "}
-                      <p>{element.firstName} {element.lastName}</p>
-                      <p>specialized:{element.specialized}</p>
-                      <button id="butOpen"
+                   
+                    
+                     
+                     
+                      <button id="buttonOpen"
                         onClick={() => {
                           getDoctorById(element._id);
                         }}
                       >
                         open
                       </button>
-                    </div>
+                   
                   </div>
                 ))
             ) : (
@@ -253,3 +259,70 @@ export default Skip;
 //     )}
 //   </>
 // );
+// --------
+// <>
+// {
+//   <div className="skipAllDoctors">
+//     <h1 className="titleTheDoctors">الأطباء</h1>
+//     <div className="allDoctor">
+//       {allDoctor ? (
+//         allDoctor
+//           .filter((doctorInformation) => {
+//             if (searchDoctor == "") {
+//               return doctorInformation;
+//             } else if (
+//               doctorInformation.firstName
+//                 .toLowerCase()
+//                 .includes(searchDoctor.toLowerCase()) ||
+//               doctorInformation.lastName
+//                 .toLowerCase()
+//                 .includes(searchDoctor.toLowerCase()) ||
+//               doctorInformation.specialized
+//                 .toLowerCase()
+//                 .includes(searchDoctor.toLowerCase())
+//             ) {
+//               return doctorInformation;
+//             }
+//           })
+//           .map((element, index) => (
+//             <div key={index} className="doctor">
+//               {role == "ADMIN" ||
+//               localStorage.getItem("Role") == "ADMIN" ? (
+//                 <button
+//                   id="deleteButton"
+//                   onClick={() => {
+//                     deleteDoctor(element._id);
+//                   }}
+//                 >
+//                   X
+//                 </button>
+//               ) : (
+//                 <></>
+//               )}
+//               <div className="containerImage">
+//                 {" "}
+//                 <img id="imageDoctor" src={element.image}></img>
+//               </div>
+//               <div className="containerPrg">
+//                 {" "}
+//                 <p>{element.firstName} {element.lastName}</p>
+//                 <p>specialized:{element.specialized}</p>
+//                 <button id="butOpen"
+//                   onClick={() => {
+//                     getDoctorById(element._id);
+//                   }}
+//                 >
+//                   open
+//                 </button>
+//               </div>
+//             </div>
+//           ))
+//       ) : (
+//         <div>{noResult}</div>
+//       )}
+//     </div>
+//   </div>
+// }
+// </>
+// );
+// };
