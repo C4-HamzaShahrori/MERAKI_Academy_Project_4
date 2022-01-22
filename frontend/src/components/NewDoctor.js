@@ -34,7 +34,7 @@ return(<>
 <div className="containerNewDoctor">
 {/* <Model isOpen={modelNewDoctor}  onRequestClose={()=>{setModelNewDoctor(false)
    navigate("/AllDoctor")}}> */}
-   <form className="formAddDoctor">
+   <div className="formAddDoctor">
      <div className="sameLine"> 
         
         
@@ -89,7 +89,7 @@ return(<>
         <label for="address">العنوان</label>
        </div> 
 <button className="btnAddDoctor"   onClick={addDoctor}>اضافه</button>
-        </form>
+        </div>
     {/* <h2>Add Doctor:</h2> */}
     {/* <input  onChange={(e) => {
           setFirstName(e.target.value);

@@ -619,13 +619,77 @@ transition:transform 1s ;
   margin-bottom: 10px;
   resize: none;
   outline: none;
+  color: black
  ;
 }
 
+footer{
 
-/* .btn{
-  text-align: center;
-} */
+  width: 100%;
+  height: 300px;
+  position: relative;
+  bottom: 0;
+  background: linear-gradient(to right, #336DB0,#c6cdd6);
+  color:#fff ;
+  padding: 100px 0 30px;
+  border-top-left-radius: 125px;
+  font-size: 13px;
+  /* line-height:20px; */
+ margin-top: 20px;
+}
+
+
+.containerFooter{
+  width: 85%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+
+.infFooter{
+  flex-basis:25% ;
+  padding: 10px;
+
+}
+
+
+.logoFooter{
+  width: 80px;
+
+}
+
+
+.infFooter h3{
+  width: fit-content;
+  margin-bottom:40px ;
+  position: relative;
+
+}
+
+
+.emailFooter{
+  width: fit-content;
+  border-bottom: 1px solid #ccc;
+  margin: 20px 0;
+}
+
+
+.infFooter ul li{
+  list-style: none;
+  margin-bottom: 12px;
+
+}
+
+.infFooter ul li a{
+  text-decoration: none;
+  color: #fff;
+}
+
+
+
 
 .commentButton{
  
@@ -675,6 +739,10 @@ transition-property:  box-shadow,transform;
 
 }
 
+.commentH{
+  font-weight: bold;
+  font-size: 30px;
+}
 
 .inputGroup{
   margin-bottom: 30px;

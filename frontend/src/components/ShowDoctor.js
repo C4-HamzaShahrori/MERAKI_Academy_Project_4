@@ -76,6 +76,7 @@ const ShowDoctor = ({ doctorId, token }) => {
                     العنوان :<span> {details.address}</span>
                   </p>
                   <br></br>
+                  <h2 className="commentH">تعليقات</h2>
                   <div className="containerComment">
                     {details.comment ? (
                       details.comment.map((comment, index) => {
@@ -96,18 +97,7 @@ const ShowDoctor = ({ doctorId, token }) => {
                   <img className="backImage" src="../image/8.jpg" />
                 </div>
 
-                {/* <p>
-              specialized:{details.specialized}
-              <br />
-              FirstName:{details.firstName}
-              <br />
-              LastName:{details.lastName}
-              <br />
-              Address:{details.address}
-              <br />
-              NumberPhone:{details.numberPhone}
-              <br />
-            </p> */}
+           
 
                 {localStorage.getItem("Token") ? (
                   <>

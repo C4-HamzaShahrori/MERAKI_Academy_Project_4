@@ -134,7 +134,42 @@ const Home = ({setSearchDoctor,token}) => {
   </div></div></>
     
   
-     
+  <>
+    <footer >
+        <div className="containerFooter">
+            <div className="infFooter">
+                <img className="logoFooter" src="../image/logo1.png"/>
+                <p className="prgFooter">FINDOCTOR</p>
+            </div>
+            <div className="infFooter">
+              <h3>حول</h3>
+              
+              <p>شارع حميد الدعجة</p>
+              <p>ماركا،العبدلات</p>
+              <p>عمان,الاردن</p>
+              <p className="emailFooter">fin-doctor@inf.com</p>
+              <h4>+296-58545585</h4>
+            </div>
+            <div className="infFooter">
+              <h3>الروابط</h3>
+              <ul>
+                <li><a>الرئيسية</a></li>
+                <li><a>الخدمات</a></li>
+                <li><a>النصائح</a></li>
+              </ul>
+            </div>
+            <div className="infFooter">
+              <h3>روابط مفيدة</h3>
+              <ul>
+                <li><a>الخرائط</a></li>
+                <li><a>الخدمات</a></li>
+                <li><a>التخصصات</a></li>
+              </ul>
+            </div>
+        </div>
+    </footer>
+    
+    </>
     
     
 

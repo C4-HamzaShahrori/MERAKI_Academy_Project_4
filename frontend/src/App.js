@@ -9,9 +9,11 @@ import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 import Skip from "./components/Skip/Skip.js";
 import Navigation from "./components/Navigation";
+
 import NewDoctor from "./components/NewDoctor"
 import ShowDoctor from "./components/ShowDoctor"
 import Header from "./components/Header"
+import Footer from "./components/Footer"
 function App() {
   const [token, setToken] = useState("");
   const [isLogged, setIsLogged] = useState(false);
@@ -78,6 +80,7 @@ function App() {
           element={<ShowDoctor isLogged={isLogged} token={token} searchDoctor={searchDoctor}doctorId={doctorId}token={token}/>}
         />
       </Routes>
+      {/* <Footer></Footer> */}
     </>
   );
 }

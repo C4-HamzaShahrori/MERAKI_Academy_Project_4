@@ -41,7 +41,7 @@ const SignIn = ({
       // const role =result.data.role.role
       
       setMessageAfterLogIN(result.data.message);
-      navigate("/AllDoctor"); 
+      navigate("/"); 
     }
     catch(error){ console.log(error.response.status);
       if (error.response.status == 403) {
