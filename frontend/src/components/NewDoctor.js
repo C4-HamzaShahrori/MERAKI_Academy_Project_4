@@ -31,15 +31,71 @@ const addDoctor=async()=>{
     }
 }
 return(<>
-<div>
+<div className="containerNewDoctor">
 {/* <Model isOpen={modelNewDoctor}  onRequestClose={()=>{setModelNewDoctor(false)
    navigate("/AllDoctor")}}> */}
-    <h2>Add Doctor:</h2>
-    <input  onChange={(e) => {
+   <form className="formAddDoctor">
+     <div className="sameLine"> 
+        
+        
+        
+       <div className="inputGroup">
+     <input id="lastName" required onChange={(e) => {
+          setLastName(e.target.value);
+        }}type="text" placeholder="الاسم الاخير"/>
+        <label for="lastName">الاسم الاخير</label>
+       </div>
+       <div className="inputGroup">
+     <input id="firstName" required onChange={(e) => {
+          setFirstName(e.target.value);
+        }}type="text" placeholder="الاسم الاول"/>
+        <label for="firstName">الاسم الاول</label>
+       </div>  </div>
+    
+
+
+       <div className="inputGroup">
+     <input id="specialized" required onChange={(e) => {
+          setSpecialized(e.target.value);
+        }} type="text" placeholder="الاختصاص"/>
+        <label for="specialized">الاختصاص</label>
+       </div> 
+
+
+       <div className="inputGroup">
+     <input id="price" required onChange={(e) => {
+          setPrice(e.target.value);
+        }}type="text" placeholder="الكشفية" />
+        <label for="price">الكشفية</label>
+       </div> 
+        
+       <div className="inputGroup">
+     <input id="numberPhone" required onChange={(e) => {
+          setNumberPhone(e.target.value);
+        }}type="text" placeholder="رقم التواصل" />
+        <label for="numberPhone">رقم التواصل</label>
+       </div> 
+       <div className="inputGroup">
+     <input id="imageToDoctor" required onChange={(e) => {
+          setImage(e.target.value);
+        }}type="text" placeholder="اضافة صورة " />
+        <label for="imageToDoctor">اضافة صورة</label>
+       </div> 
+
+       <div className="inputGroup">
+     <textarea id="address" rows="8" required onChange={(e) => {
+          setAddress(e.target.value);
+        }}type="text" placeholder="العنوان" />
+        <label for="address">العنوان</label>
+       </div> 
+<button className="btnAddDoctor"   onClick={addDoctor}>اضافه</button>
+        </form>
+    {/* <h2>Add Doctor:</h2> */}
+    {/* <input  onChange={(e) => {
           setFirstName(e.target.value);
         }}type="text" placeholder="firstName"/>
-        <br/>
-    <input  onChange={(e) => {
+        <br/> */}
+    {/* <input  onChange={(e) => {
           setLastName(e.target.value);
         }}type="text" placeholder="lastName"/>
           <br/>
@@ -53,9 +109,9 @@ return(<>
           <br/>
           <input  onChange={(e) => {
           setPrice(e.target.value);
-        }}type="text" placeholder="price"/>
+        }}type="text" placeholder="price"/> */}
           <br/>
-    <input  onChange={(e) => {
+    {/* <input  onChange={(e) => {
           setNumberPhone(e.target.value);
         }}type="text" placeholder="numberPhone"/>
           <br/>
@@ -66,8 +122,8 @@ return(<>
     <input  onChange={(e) => {
           setImage(e.target.value);
         }}type="text" placeholder="image"/>
-          <br/>
-<button onClick={addDoctor}>Add</button>
+          <br/> */}
+{/* <button onClick={addDoctor}>Add</button> */}
 <div>{stateAfterAddDoctor}</div>
 {/* </Model> */}
 

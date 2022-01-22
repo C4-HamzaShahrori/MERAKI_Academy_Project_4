@@ -85,8 +85,9 @@ const Navigation = ({
             تسجيل خروج
             </a></li>
 
-            <li>   <a id="nameUser" href="">
-              {userFirstName ||localStorage.getItem("FirstName")} {localStorage.getItem("LastName")||userLastName}
+            <li>   <a id="nameUser" href=""> 
+             
+               <p> مرحبا <span>{userFirstName ||localStorage.getItem ("FirstName")} {localStorage.getItem ("LastName")||userLastName}</span></p>
             </a></li>
 
          
