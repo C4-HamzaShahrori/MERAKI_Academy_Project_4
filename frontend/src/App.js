@@ -47,10 +47,10 @@ function App() {
       {/* <div className="App">
         <h1>healthApp</h1>
       </div> */}
-<NewDoctor modelNewDoctor={modelNewDoctor}setModelNewDoctor={setModelNewDoctor}/>
+
       <Routes>
       {/* <Route path="/" element={<Header  setSearchDoctor={setSearchDoctor} />}  /> */}
-        <Route path="/" element={<Home setSearchDoctor={setSearchDoctor}/>} />
+        <Route path="/" element={<Home setSearchDoctor={setSearchDoctor} token={token}/>} />
         <Route path="/signUp" element={<SignUp />} />
         <Route
           path="/signIn"
@@ -67,10 +67,12 @@ function App() {
             />
           }
         />
+          <Route path="/New-Doctor"  element={<NewDoctor modelNewDoctor={modelNewDoctor}setModelNewDoctor={setModelNewDoctor}/>} />
         <Route
           path="/AllDoctor"
           element={<Skip isLogged={isLogged} token={token} searchDoctor={searchDoctor} role={role}  setDoctorId={setDoctorId}setDoctorDetails={setDoctorDetails}doctorDetails={doctorDetails}/>}
         />
+      
            <Route
           path="/doctor/:id"
           element={<ShowDoctor isLogged={isLogged} token={token} searchDoctor={searchDoctor}doctorId={doctorId}token={token}/>}

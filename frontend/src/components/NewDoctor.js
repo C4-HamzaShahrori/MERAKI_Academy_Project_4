@@ -10,6 +10,7 @@ const NewDoctor = ({setModelNewDoctor,modelNewDoctor}) => {
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState(0);
   const [specialized, setSpecialized] = useState("");
+  const [price, setPrice] = useState("");
   const [numberPhone, setNumberPhone] = useState("");
   const [address, setAddress] = useState("");
   const [image, setImage] = useState("");
@@ -18,19 +19,21 @@ const NewDoctor = ({setModelNewDoctor,modelNewDoctor}) => {
 
 const addDoctor=async()=>{
     try{
-        const result= await axios.post(`http://localhost:5000/doctors`,{firstName:firstName,lastName:lastName,age:age,specialized:specialized,numberPhone:numberPhone,address:address,image:image})
+        const result= await axios.post(`http://localhost:5000/doctors`,{firstName:firstName,lastName:lastName,age:age,specialized:specialized,numberPhone:numberPhone,address:address,price:price,image:image})
 
         // getAllDoctors(); 
     console.log(result.data)
-    setStateAfterAddDoctor(result.data.message) }
+    setStateAfterAddDoctor(result.data.message)
+  navigate("/AllDoctor")
+ }
     catch(error){ console.log(error.response)
       setStateAfterAddDoctor(error.response.data.message)
     }
 }
 return(<>
 <div>
-<Model isOpen={modelNewDoctor}  onRequestClose={()=>{setModelNewDoctor(false)
-   navigate("/AllDoctor")}}>
+{/* <Model isOpen={modelNewDoctor}  onRequestClose={()=>{setModelNewDoctor(false)
+   navigate("/AllDoctor")}}> */}
     <h2>Add Doctor:</h2>
     <input  onChange={(e) => {
           setFirstName(e.target.value);
@@ -48,6 +51,10 @@ return(<>
           setSpecialized(e.target.value);
         }} type="text" placeholder="specialized"/>
           <br/>
+          <input  onChange={(e) => {
+          setPrice(e.target.value);
+        }}type="text" placeholder="price"/>
+          <br/>
     <input  onChange={(e) => {
           setNumberPhone(e.target.value);
         }}type="text" placeholder="numberPhone"/>
@@ -62,7 +69,7 @@ return(<>
           <br/>
 <button onClick={addDoctor}>Add</button>
 <div>{stateAfterAddDoctor}</div>
-</Model>
+{/* </Model> */}
 
 </div>
 </>)

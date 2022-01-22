@@ -92,14 +92,19 @@ const Skip = ({ isLogged, token, searchDoctor, role, setDoctorId }) => {
                       .includes(searchDoctor.toLowerCase()) ||
                     doctorInformation.specialized
                       .toLowerCase()
-                      .includes(searchDoctor.toLowerCase())
+                      .includes(searchDoctor.toLowerCase())||
+                      doctorInformation.address
+                        .toLowerCase()
+                        .includes(searchDoctor.toLowerCase())
                   ) {
                     return doctorInformation;
                   }
                 })
                 .map((element, index) => (
 
-                  <div key={index} className="doctor">
+                  <div key={index} className="doctor"  onClick={() => {
+                    getDoctorById(element._id);
+                  }}>
                     {role == "ADMIN" ||
                     localStorage.getItem("Role") == "ADMIN" ? (
                       <button
@@ -119,19 +124,20 @@ const Skip = ({ isLogged, token, searchDoctor, role, setDoctorId }) => {
                       ></img>
 <h2 id="nameDoctor"> {element.firstName} {element.lastName} </h2>
 <p id="specializedDr">{element.specialized}</p>
+<p id="specializedDr">{element.address}</p>
 
                     </div>
                    
                     
                      
                      
-                      <button id="buttonOpen"
+                      {/* <button id="buttonOpen"
                         onClick={() => {
                           getDoctorById(element._id);
                         }}
                       >
                         open
-                      </button>
+                      </button> */}
                    
                   </div>
                 ))

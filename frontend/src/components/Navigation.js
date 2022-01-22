@@ -54,6 +54,10 @@ const Navigation = ({
     setToken("");
     navigate("/");
   };
+
+  const convertTo=()=>{
+    navigate("/NEw-Doctor")
+  }
   return (
     <>
     <div className="NavigationBar">
@@ -63,17 +67,19 @@ const Navigation = ({
       <input id="searchInput" type="text" placeholder="مثال.الاسم،التخصص" onChange={(e)=>{setSearchDoctor(e.target.value)}}/>
       <nav className="nav">
       <ul className="nav-links">
-      <li>  <a id="Home" href="/">
+     <Link to="/"> <li>  <a id="Home" >
               الرئيسية
-            </a></li>
+            </a></li></Link>
         {localStorage.getItem("Token")? (
           <>
            
             
-           <li> {role=="ADMIN" ||localStorage.getItem("Role")=="ADMIN"?( <a id="Home" onClick={()=>{setModelNewDoctor(true)}}>
+        <Link to="/New-Doctor">  <li> {role=="ADMIN" ||localStorage.getItem("Role")=="ADMIN"?( <a id="Home"  >
             أضف طبيب
-            </a>):(<></>)}</li>
+            </a>):(<></>)}</li></Link> 
            
+
+
 
             <li> <a onClick={logout} id="logout">
             تسجيل خروج

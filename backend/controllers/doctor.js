@@ -10,6 +10,7 @@ const addDoctorToCategory = (req, res) => {
     address,
     comment,
     specialized,
+    price
   } = req.body;
   const newDoctor = new doctorModel({
     image,
@@ -20,6 +21,7 @@ const addDoctorToCategory = (req, res) => {
     address,
     comment,
     specialized,
+    price
   });
   newDoctor
     .save()

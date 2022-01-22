@@ -181,6 +181,13 @@ font-size: 20px;
   margin-top: 10px;
 }
 
+
+#headerSinUp{
+  color:#fff ;
+  text-align: center;
+  margin-top: 10px;
+}
+
 .login{
   position: relative;
   outline: none;
@@ -194,12 +201,32 @@ font-size: 20px;
   margin: 10px;
 }
 
-
+.inputSignup{
+  position: relative;
+  outline: none;
+  border: none;
+  width: 250px;
+  height: 35px;
+  border-bottom: 2px solid #0094ff;
+  background: none;
+  padding: 5px;
+  color: #fff;
+  margin: 10px;
+  left: 50px;
+}
 
 .login::placeholder{
   color:#fff;
   text-align: center;
 }
+
+
+.inputSignup::placeholder{
+  color:#fff;
+  text-align: center;
+}
+
+
 .E{
   
   left: 50px;
@@ -226,6 +253,33 @@ font-size: 20px;
   cursor: pointer;
 }
 
+#signIn{
+  position: relative;
+  /* top: 305px; */
+  left: 75px;
+  width: 200px;
+  height: 35px;
+  border: none;
+  background: #0077ff;
+  outline: none;
+  color: #fff;
+  border-radius: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+
+
+#butLogin:hover{
+background: #fff;
+color:#0077ff ;
+}
+
+#signIn:hover{
+  background: #fff;
+  color:#0077ff ;
+  }
 
 .divSignUp{
   position: absolute;
@@ -238,12 +292,6 @@ font-size: 20px;
   border-radius:15px ;
   box-sizing: border-box;
 }
-
-#butLogin:hover{
-background: #fff;
-color:#0077ff ;
-}
-
 
 .home{
   /* display: grid;
@@ -417,6 +465,218 @@ transform:translateY(-50px) ;
     transform: scale(1.1);
   
   }
+
+
+.titleTips{
+  text-align: center;
+  margin-top: 20px;
+  font-size: 40px;
+  font-family: sans-serif;
+}
+
+
+.tipsContainer{
+  height: 80%;
+  width: 100%;
+  display: flex;
+  margin:5% auto 0;
+  box-sizing: border-box;
+}
+
+.boxImage{
+  margin: 0 1%;
+  flex-grow: 1;
+  flex-basis: 0;
+  transition: 0.5s;
+}
+
+.boxImage img{
+  width: 100%;
+  height:100% ;
+  object-fit: cover;
+  transition: 1s;
+}
+
+
+.boxImage:hover{
+  flex-basis: 20%;
+}
+
+.active{
+  flex-basis: 10%;
+}
+.tipsContainer:hover.active{
+flex-basis: 0;
+}
+
+.boxImage:nth-child(1):hover{
+  flex-basis: 10%;
+}
+
+
+
+.containerProfile{
+  width: 100%;
+  height: 100vh;
+  background: #fafafa;
+  padding: 50px  8%;
+  position: relative;
+  font-weight: 600;
+}
+
+
+.DrProfile{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-top: 10px;
+}
+
+.info{
+  max-width: 800px;
+  padding-left: 10% ;
+  color: #333;
+  text-align: center;
+}
+
+.info h1{
+  font-size: 36px;
+  font-weight:600 ;
+  line-height: 50px;
+  margin-bottom: 30px;
+}
+
+.info p{
+  font-size: 20px;
+}
+.info span{
+color: #336DB0;
+}
+
+
+.profile-image{
+  width: 50vw;
+max-width: 450px;
+height: 50vh;
+position: relative;
+z-index: 2;
+transition:transform 1s ;
+}
+
+.DrImage{
+  text-align: right;
+  position: relative;
+}
+
+
+.backImage{
+  position: absolute;
+  width:50vw;
+  max-width: 450px;
+  height:50vh;
+  top:-12px;
+  right: 15px;
+
+}
+
+.profile-image:hover{
+  transform: translate(-15px,-15px);
+}
+
+
+
+.containerInputComment{
+  text-align: center;
+  width: 600px;
+  border: 2px solid #333;
+  padding: 15px 10px;
+  margin-left: 40px;
+  margin-top: 15px;
+}
+
+.containerInputComment h1{
+  text-align: center;
+  margin-bottom: 15px;
+ 
+
+}
+
+.AddComment{
+  font-size: 20px;
+  height: 30px;
+  width: 100%;
+  border: none;
+  border-bottom:2px solid #aaa ;
+  background-color: transparent;
+  margin-bottom: 10px;
+  resize: none;
+  outline: none;
+ ;
+}
+
+
+/* .btn{
+  text-align: center;
+} */
+
+.commentButton{
+ 
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  background:#336DB0;
+  width: 160px;
+ 
+  padding: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  border-radius:5px ;
+  cursor: pointer;
+  box-shadow:0 0 10px rgba(0, 0, 0, 0.1) ;
+-webkit-transition-duration: 0.3s;
+transition-duration: 0.3s;
+-webkit-transition-property: box-shadow,transform;
+transition-property:  box-shadow,transform;
+
+}
+
+.AddComment::placeholder{
+  color:#333;
+  text-align: center;
+  cursor:text;
+}
+/* 
+
+.bodyTips{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: rgb(241, 232, 232);
+
+}
+
+.bodyTips{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+
+.tipSpan{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  /* transform:rotateY(calc(var(--i) * 45deg)); */
+/* }  */
 
 /* .findDoctor{
 display: grid;

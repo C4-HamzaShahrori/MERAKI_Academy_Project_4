@@ -1,9 +1,37 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import axios from "axios";
 import { Routes, Route, Link, Navigate } from "react-router-dom";
 
 // console.log(localStorage.getItem("Token"));
-const Home = ({setSearchDoctor}) => {
+const Home = ({setSearchDoctor,token}) => {
+  const [allTips, setAllTips] = useState("");
+  const [noResult, setNoResult] = useState("");
+  const getAllTips = async () => {
+    try {
+      const result = await axios.get(`http://localhost:5000/tips`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (result.data == `No result`) {
+        console.log(result.data);
+        setNoResult(result.data);
+      } else {
+        console.log(result.data.Tips);
+        // console.log(result.data.result);
+        setAllTips(result.data.Tips);
+      }
+    } catch(error) {
+      console.log(error.response);
+    }
+  };
+
+  useEffect(() => {
+    getAllTips();
+  }, []);
+
+
   return (
       <>
       <div className="container">
@@ -83,14 +111,43 @@ const Home = ({setSearchDoctor}) => {
         
       </div>
 
-      <Link to="/AllDoctor"><button id="Skip" >استكشف</button></Link>
+    <a href="/AllDoctor">  <button  id="Skip" >استكشف</button></a>
      
     </div>
+<>
+<div className="bodyTips">
+
+  <h1 className="titleTips">نصائح</h1>
+  <div className="tipsContainer">
+  <div className="boxImage active"> <img src="../image/tips.jpg"/></div>
+  {allTips ? (allTips.map((tip,i)=>(
+
+<div  key={i} className="boxImage"><img src={tip.image}/></div>
+
+
+
+
+
+))):(<div>{noResult}</div>)}
+  
+  
+  </div></div></>
     
+  
+     
+    
+    
+
     </>
     
   );
-   {/* <div className="findDoctor">
+  
+};
+
+export default Home;
+
+
+ {/* <div className="findDoctor">
         <img id="imageFindDoctor" src="../image/FD.png" />
       </div>
 
@@ -102,11 +159,8 @@ const Home = ({setSearchDoctor}) => {
         <img id="imageFindPrices" src="../image/price.png" />
         <h4 id="headerFindPrices">اكتشف الاسعار</h4>
       </div> */}
-  {
-    /* <Link to="/signUp"><button id="signUp" >Sign up</button></Link>
-<Link to="/signIn"><button id="signIn" >Sign in</button></Link>
-<Link to="/AllDoctor"><button id="Skip" >Skip</button></Link> */
-  }
-};
-
-export default Home;
+      {
+        /* <Link to="/signUp"><button id="signUp" >Sign up</button></Link>
+    <Link to="/signIn"><button id="signIn" >Sign in</button></Link>
+    <Link to="/AllDoctor"><button id="Skip" >Skip</button></Link> */
+      }

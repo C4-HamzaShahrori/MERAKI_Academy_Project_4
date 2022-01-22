@@ -35,31 +35,33 @@ const SignUp = () => {
   
       <Model className="divSignUp" isOpen={modelIsOpen}  onRequestClose={()=>{setModelIsOpen(false)
    navigate("/")}}>
-      <h1 id="headerSinUp">SignUp:</h1>
-      <input  onChange={(e)=>{
+     
+      <h2 id="headerSinUp">مستخدم جديد</h2>
+      <input className="inputSignup " onChange={(e)=>{
         setFirstName(e.target.value)
-      }} type="text" placeholder="FirstName here ..." /> <br />
-      <input onChange={(e)=>{
+      }} type="text" placeholder="الاسم الاول" /> <br />
+      <input className="inputSignup" onChange={(e)=>{
         setLastName(e.target.value)
-      }} type="text" placeholder="LastName here ..." />
+      }} type="text" placeholder="الاسم الاخير " />
       <br />
-      <input onChange={(e)=>{
+      <input className="inputSignup" onChange={(e)=>{
         setAge(e.target.value)
-      }} type="number" placeholder="Age here ..." />
+      }} type="number" placeholder="العمر" />
       <br />
-      <input onChange={(e)=>{
+      <input className="inputSignup" onChange={(e)=>{
         setCountry(e.target.value)
-      }} type="text" placeholder="Country here ..." />
+      }} type="text" placeholder="البلد" />
       <br />
-      <input onChange={(e)=>{
+      <input className="inputSignup" onChange={(e)=>{
         setEmail(e.target.value)
-      }}type="email" placeholder="Email here ..." />
+      }}type="email" placeholder="بريد الالكتروني 
+      " />
       <br />
-      <input   onChange={(e)=>{
+      <input  className="inputSignup"  onChange={(e)=>{
         setPassword(e.target.value)
-      }}type="password" placeholder="Password here ..." />
+      }}type="password" placeholder="كلمة المرور" />
       <br />
-      <button  onClick={saveUser} id="signIn">SinUp</button>
+      <button  onClick={saveUser} id="signIn">اشتراك</button>
       <div>{onSaveUser}</div>
       </Model>
    

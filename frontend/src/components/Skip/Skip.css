@@ -1,5 +1,7 @@
 .skipAllDoctors{
-    background-image: url(./image/back.jfif);
+    position: absolute;
+    z-index: 1000;
+    background-image:  url(./image/back.jfif) ;
     background:  #336DB0;
     width: 100%;
     min-height: 100vh;

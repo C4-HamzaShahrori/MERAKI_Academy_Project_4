@@ -4,10 +4,10 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const ShowDoctor = ({ doctorId, token }) => {
-     localStorage.getItem("Token")
-//   console.log(doctorId);
+  localStorage.getItem("Token");
+  //   console.log(doctorId);
   const { id } = useParams();
-//   console.log(id);
+  //   console.log(id);
   const navigate = useNavigate();
   const [doctorDetails, setDoctorDetails] = useState("");
   const [comment, setComment] = useState("");
@@ -15,9 +15,9 @@ const ShowDoctor = ({ doctorId, token }) => {
   const getDoctorById = async () => {
     try {
       const result = await axios.get(`http://localhost:5000/doctors/${id}`);
-    //   console.log(result.data.result);
+      //   console.log(result.data.result);
       setDoctorDetails(result.data.result);
-    //   console.log(doctorDetails);
+      //   console.log(doctorDetails);
     } catch (error) {
       console.log(error);
     }
@@ -25,7 +25,7 @@ const ShowDoctor = ({ doctorId, token }) => {
   useEffect(() => {
     getDoctorById();
   }, []);
-// console.log(doctorDetails);
+  // console.log(doctorDetails);
   const addComment = async () => {
     try {
       await axios.post(
@@ -37,7 +37,7 @@ const ShowDoctor = ({ doctorId, token }) => {
           },
         }
       );
-      getDoctorById()
+      getDoctorById();
     } catch (error) {
       console.log(error.response);
     }
@@ -45,13 +45,58 @@ const ShowDoctor = ({ doctorId, token }) => {
 
   return (
     <>
-      {doctorDetails && doctorDetails.map((details, i) => (
-        <div  key={i}>
-          <div>
-            <img id="imageDoctor" src={details.image}></img>
-          </div>
-          <div>
-            <p>
+      <div className="containerProfile">
+        <div className="DrProfile">
+          {doctorDetails &&
+            doctorDetails.map((details, i) => (
+              <>
+                <div className="info">
+                  <h1>
+                    الدكتور :
+                    <span>
+                      {" "}
+                      {details.firstName} {details.lastName}
+                    </span>
+                  </h1>
+                  <br></br>
+                  <p>
+                    {" "}
+                    اختصاص :<span> {details.specialized}</span>
+                  </p>
+                  <br></br>
+                  <p>
+                    الكشفيه :<span> {details.price} </span>
+                  </p>
+                  <br></br>
+                  <p>
+                    رقم التواصل :<span> {details.numberPhone} </span>
+                  </p>
+                  <br></br>
+                  <p>
+                    العنوان :<span> {details.address}</span>
+                  </p>
+                  <br></br>
+                  <div className="containerComment">
+                    {details.comment ? (
+                      details.comment.map((comment, index) => {
+                        return (
+                          <form className="comment" key={index}>
+                            {comment.comment}
+                          </form>
+                        );
+                      })
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+                </div>
+
+                <div className="DrImage">
+                  <img className="profile-image" src={details.image}></img>
+                  <img className="backImage" src="../image/8.jpg" />
+                </div>
+
+                {/* <p>
               specialized:{details.specialized}
               <br />
               FirstName:{details.firstName}
@@ -62,44 +107,40 @@ const ShowDoctor = ({ doctorId, token }) => {
               <br />
               NumberPhone:{details.numberPhone}
               <br />
-            </p>
-            <div>
-              {details.comment ? (
-                details.comment.map((comment, index) => {
-                  return (
-                    <p className="comment" key={index}>
-                      {comment.comment}
-                    </p>
-                  );
-                })
-              ) : (
-                <></>
-              )}
-            </div>
-            {localStorage.getItem("Token") ? (
-              <div>
-                <textarea
-                  className="comment"
-                  placeholder="comment..."
-                  onChange={(e) => {
-                    setComment(e.target.value);
-                  }}
-                />
-                <button
-                  className="commentButton"
-                  onClick={() => {
-                    addComment();
-                  }}
-                >
-                  Add comment
-                </button>
-              </div>
-            ) : (
-              <></>
-            )}
-          </div>
+            </p> */}
+
+                {localStorage.getItem("Token") ? (
+                  <>
+                    <div className="containerInputComment">
+                      <h1>اترك تعليق</h1>
+                      <form>
+                        <textarea
+                          className="AddComment"
+                          placeholder="أضف تعليق"
+                          onChange={(e) => {
+                            setComment(e.target.value);
+                          }}
+                        />
+                      </form>
+                      <div className="btn">
+                        <button
+                          className="commentButton"
+                          onClick={() => {
+                            addComment();
+                          }}
+                        >
+                          أضف
+                        </button>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <></>
+                )}
+              </>
+            ))}
         </div>
-      ))}
+      </div>
     </>
   );
 };

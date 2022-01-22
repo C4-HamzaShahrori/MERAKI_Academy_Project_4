@@ -8,6 +8,7 @@ const doctorSchema = new mongoose.Schema({
   specialized: { type: String, required: true },
   numberPhone: { type: String, required: true },
   address: { type: String, required: true },
+  price: { type: String, required: true },
   comment: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
 });
 
