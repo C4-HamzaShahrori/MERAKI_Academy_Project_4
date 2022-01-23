@@ -55,7 +55,7 @@ const [image,setImage]=useState("")
 console.log(result.data);
       setImage(result.data.user.image)
 
-    console.log(image);
+   
     } catch (error) {
       console.log(error.response);
     }
