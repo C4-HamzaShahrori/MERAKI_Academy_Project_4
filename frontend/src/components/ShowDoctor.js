@@ -3,21 +3,25 @@ import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-const ShowDoctor = ({ doctorId, token }) => {
+const ShowDoctor = ({ doctorId, token,userId }) => {
   localStorage.getItem("Token");
-  //   console.log(doctorId);
+
   const { id } = useParams();
-  //   console.log(id);
+
   const navigate = useNavigate();
   const [doctorDetails, setDoctorDetails] = useState("");
   const [comment, setComment] = useState("");
+const [image,setImage]=useState("")
+
+
+
+
 
   const getDoctorById = async () => {
     try {
       const result = await axios.get(`http://localhost:5000/doctors/${id}`);
-      //   console.log(result.data.result);
+
       setDoctorDetails(result.data.result);
-      //   console.log(doctorDetails);
     } catch (error) {
       console.log(error);
     }
@@ -25,7 +29,7 @@ const ShowDoctor = ({ doctorId, token }) => {
   useEffect(() => {
     getDoctorById();
   }, []);
-  // console.log(doctorDetails);
+
   const addComment = async () => {
     try {
       await axios.post(
@@ -42,6 +46,26 @@ const ShowDoctor = ({ doctorId, token }) => {
       console.log(error.response);
     }
   };
+
+
+
+  const getUserById = async () => {
+    try {
+      const result = await axios.get(`http://localhost:5000/users/${ localStorage.getItem("UserId")}`);
+console.log(result.data);
+      setImage(result.data.user.image)
+
+    console.log(image);
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+console.log(image);
+  useEffect(() => {
+  
+      getUserById();
+    
+  }, [userId]);
 
   return (
     <>
@@ -82,7 +106,9 @@ const ShowDoctor = ({ doctorId, token }) => {
                       details.comment.map((comment, index) => {
                         return (
                           <form className="comment" key={index}>
-                            {comment.comment}
+                           <img className="imageUser" src={image}></img> <br></br> 
+                           <p className="NameUser">{localStorage.getItem("FirstName")} {localStorage.getItem("LastName")}</p>
+                           {comment.comment}
                           </form>
                         );
                       })
@@ -96,8 +122,6 @@ const ShowDoctor = ({ doctorId, token }) => {
                   <img className="profile-image" src={details.image}></img>
                   <img className="backImage" src="../image/8.jpg" />
                 </div>
-
-           
 
                 {localStorage.getItem("Token") ? (
                   <>
@@ -136,92 +160,3 @@ const ShowDoctor = ({ doctorId, token }) => {
 };
 
 export default ShowDoctor;
-
-// {doctorDetails[0] && localStorage.getItem("Token") ? (
-//     doctorDetails.map((details, i) => (
-//       <div>
-//         <div>
-//           <img id="imageDoctor" src={details.image}></img>
-//         </div>
-//         <div>
-//           <p>
-//             specialized:{details.specialized}
-//             <br />
-//             FirstName:{details.firstName}
-//             <br />
-//             LastName:{details.lastName}
-//             <br />
-//             Address:{details.address}
-//             <br />
-//             NumberPhone:{details.numberPhone}
-//             <br />
-//           </p>
-//           <div>
-//             {details.comment ? (
-//               details.comment.map((comment, index) => {
-//                 return (
-//                   <p className="comment" key={index}>
-//                     {comment.comment}
-//                   </p>
-//                 );
-//               })
-//             ) : (
-//               <></>
-//             )}
-//           </div>
-
-//         </div>
-//       </div>
-//     ))
-//   ) : (
-//     // <>jjjj</>
-//     doctorDetails.map((details,i)=>(<div><div>
-//         <img id="imageDoctor" src={details.image}></img>
-//         </div><div>
-//         <p>
-//                             specialized:{details.specialized}
-//                             <br />
-//                             FirstName:{details.firstName}
-//                             <br />
-//                             LastName:{details.lastName}
-//                             <br />
-//                             Address:{details.address}
-//                             <br />
-//                             NumberPhone:{details.numberPhone}
-//                             <br />
-//                           </p>
-//                           <div>
-//                           {details.comment ? (
-//                             details.comment.map((comment, index) => {
-//                               return (
-//                                 <p className="comment" key={index}>
-//                                   {comment.comment}
-//                                 </p>
-//                               );
-//                             })
-//                           ) : (
-//                             <></>
-//                           )}
-
-//                         </div>
-//                         {
-//                         <div>
-//                           <textarea
-//                             className="comment"
-//                             placeholder="comment..."
-//                             onChange={(e) => {
-//                               setComment(e.target.value);
-//                             }}
-//                           />
-//                           <button
-//                             className="commentButton"
-//                             onClick={() => {
-//                               addComment(details._id);
-//                             }}
-//                           >
-//                             Add comment
-//                           </button>
-//                         </div>
-//                       }
-//             </div></div>))
-//   )}

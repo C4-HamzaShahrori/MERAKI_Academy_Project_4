@@ -611,7 +611,7 @@ transition:transform 1s ;
 
 .AddComment{
   font-size: 20px;
-  height: 30px;
+  height: 50px;
   width: 100%;
   border: none;
   border-bottom:2px solid rgb(12, 12, 12) ;
@@ -626,12 +626,12 @@ transition:transform 1s ;
 footer{
 
   width: 100%;
-  height: 300px;
+  height: 200px;
   position: relative;
   bottom: 0;
   background: linear-gradient(to right, #336DB0,#c6cdd6);
   color:#fff ;
-  padding: 100px 0 30px;
+  /* padding: 100px 0 30px; */
   border-top-left-radius: 125px;
   font-size: 13px;
   /* line-height:20px; */
@@ -640,7 +640,7 @@ footer{
 
 
 .containerFooter{
-  width: 85%;
+  /* width: 85%; */
   margin: auto;
   display: flex;
   flex-wrap: wrap;
@@ -657,7 +657,7 @@ footer{
 
 
 .logoFooter{
-  width: 80px;
+  width: 100px;
 
 }
 
@@ -720,6 +720,17 @@ transition-property:  box-shadow,transform;
 }
 
 
+.imageUser{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  
+}
+
+.NameUser{
+  font-weight:900;
+  
+}
 
 .containerNewDoctor{
   width: 100%;
@@ -803,154 +814,6 @@ label{
   flex-basis: 48%;
 
 }
-/* 
-
-.bodyTips{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: rgb(241, 232, 232);
-
-}
-
-.bodyTips{
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-}
-
-
-.tipSpan{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform-origin: center;
-  transform-style: preserve-3d;
-  /* transform:rotateY(calc(var(--i) * 45deg)); */
-/* }  */
-
-/* .findDoctor{
-display: grid;
-grid-column: 1/1;
-grid-row: 2/2;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-
-} */
-/* #headerFindDoctor{
-  font-size: 25px;
-  
-}
-
-
-#imageFindDoctor{
-width: 200px;
-height: 200px;
-} */
-
-/* .viewProfile{
-  display: grid;
-  grid-column: 4/4;
-  grid-row: 2/2;
-  text-align: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  
-}
-#imageViewProfile{
-  width: 200px;
-  height: 200px;
-}
-#headerViewProfile{
-  font-size: 25px;
-}
-
-
-
-.findPrices{
-  display: grid;
-  grid-column: 6/6;
-  grid-row: 2/2;
-  text-align: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-#imageFindPrices{
-  width: 200px;
-  height: 200px;
-}
-#headerFindPrices{
-  font-size: 25px;
-} */
-
-
-
-
-/* #definition{
- color: #1E90FF;
-font-size:30px;
-text-align: justify;
-line-height:30px ;
-font-weight: bold;
-
-/* padding: 0 20px 5px 20px; */
-/* }  */
-
-/* 
-#signUp{
-  font-family: "Roboto", sans-serif;
-  font-size: 18px;
-  font-weight: bold;
-  background:#1E90FF;
-  width: 160px;
-  padding: 20px;
-  text-align: center;
-  text-transform: uppercase;
-  color: #fff;
-  border-radius:5px ;
-  cursor: pointer;
-  box-shadow:0 0 10px rgba(0, 0, 0, 0.1) ;
--webkit-transition-duration: 0.3s;
-transition-duration: 0.3s;
--webkit-transition-property: box-shadow,transform;
-transition-property:  box-shadow,transform;
-}
-
-
-#signUp:hover,#signUp:focus,#signUp:active{
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-
-}
-
-#signIn{
-  font-family: "Roboto", sans-serif;
-  font-size: 18px;
-  font-weight: bold;
-  background:#1E90FF;
-  width: 160px;
-  padding: 20px;
-  text-align: center;
-  text-transform: uppercase;
-  color: #fff;
-  border-radius:5px ;
-  cursor: pointer;
-  box-shadow:0 0 10px rgba(0, 0, 0, 0.1) ;
--webkit-transition-duration: 0.3s;
-transition-duration: 0.3s;
--webkit-transition-property: box-shadow,transform;
-transition-property:  box-shadow,transform;
-}
-
-#signIn:hover,#signIn:focus,#signIn:active{
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-
-} */
 
 
 .containerImage{
@@ -972,46 +835,6 @@ transition-property:  box-shadow,transform;
 
 
 
-
-
-
-/* 
- a{
-  color: white;
-  padding: 12px;
-  display: inline-block;
-  text-decoration: none;
-
-}  */
-
-/* #Home{
-  background-color: blue ;
- 
-} */
-/* #Home:hover{
-  cursor: pointer;
-} */
-/* a:hover,a:focus{
-  background-color: dimgray;
-} */
-
-
-/* #logout{
-  float: right;
-}
-#logout:hover{
-  cursor: pointer;
-} */
-/* #SignIn{
-float: right;
-}
-#SignUp{
-float: right;
-} */
-
-/* #nameUser{
-  float: right;
-} */
 
 
 
